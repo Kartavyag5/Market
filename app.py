@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask.wrappers import Response
 from flask_sqlalchemy import SQLAlchemy
 
 # import pymysql
@@ -25,9 +26,9 @@ db = SQLAlchemy(app)
 
 # models
 class RID(db.Model):
-    rid = db.Column(db.Integer, primary_key=True, unique=True)
+    rid = db.Column(db.String(200), primary_key=True, unique=True)
     time_started = db.Column(db.DateTime, default=datetime.now)
-    time_submitted = db.Column(db.DateTime, default=datetime.now)
+    time_submitted = db.Column(db.DateTime,nullable=True, default=None)
     
     def __repr__(self):
         return f"{self.rid}"
@@ -48,21 +49,27 @@ class RID(db.Model):
 def main():
     return 'Root of Market API'
 
-@app.route('/api/start_survey', methods=['GET', 'POST'])
+@app.route('/api/start_survey', methods=['POST'])
 def start_survey():
+    # when you give rid in post request, every time new rid obj created with datetime.now()
+    # you have to give unique rid in request.
     if request.method=='POST':
         Rid = request.form['rid']
-        Time_started = request.form['time_started']
-        RID_obj = RID(rid=Rid,)
-        print(RID_obj)
+        time_started = datetime.now()
+        
+        RID_obj = RID(rid=Rid)
         db.session.add(RID_obj)  
         db.session.commit()
-        
-        resp = jsonify({'RID':Rid, 'Time_started':Time_started})
-        return resp
 
+    # this query will return the last created rid object
+    resp= RID.query.filter_by(rid=Rid).first()
+    body=[]
+    
+    body.append({'rid':resp.rid, 'time_started':time_started})
+    return {'body':body}
+
+db.create_all()
 
 # run flask app
 if __name__ == '__main__':
-    #db.create_all()
     app.run(debug=True)
