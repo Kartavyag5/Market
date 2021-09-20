@@ -66,7 +66,7 @@ def start_survey():
     body=[]
     
     body.append({'rid':resp.rid, 'time_started':time_started})
-    return {'body':body}
+    return {'body': body}
 
 @app.route('/api/end_survey', methods=['POST'])
 def end_survey():
