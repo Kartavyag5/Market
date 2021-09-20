@@ -1,8 +1,5 @@
 from flask import Flask, request, jsonify
-from flask.wrappers import Response
 from flask_sqlalchemy import SQLAlchemy
-
-# import pymysql
 from datetime import datetime
 
 app = Flask(__name__)
@@ -12,13 +9,19 @@ app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
 #give the values of the following variables for connect MySQL db
 
 username = "root"
-password = "Creole@123"
+password = "YES"
 host = "localhost"
 database = "market"
 
+<<<<<<< HEAD
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{username}:'{password}'@{host}/{database}"
 #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    
+=======
+app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:''@localhost/market'
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+>>>>>>> d10cd2ad3a44678ddce7826cdee6e67d4ad69f90
 
 # this variable, db, will be used for all SQLAlchemy commands
 db = SQLAlchemy(app)
@@ -75,7 +78,7 @@ def end_survey():
         time_ended = datetime.now()
 
         RID_obj = RID(rid=Rid, time_submitted=time_ended)
-        db.session.add(RID_obj)  
+        db.session.add(RID_obj)
         db.session.commit()
 
     resp= RID.query.filter_by(rid=Rid).first()
@@ -89,4 +92,5 @@ db.create_all()
 
 # run flask app
 if __name__ == '__main__':
+    db.init_app(app)
     app.run(debug=True)
