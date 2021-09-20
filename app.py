@@ -11,13 +11,13 @@ app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
 
 #give the values of the following variables for connect MySQL db
 
-# username = "root"
-# password = "Creole@123"
-# host = "localhost"
-# database = "market"
+username = "root"
+password = "Creole@123"
+host = "localhost"
+database = "market"
 
-# app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://root:'Creole@123'@localhost/market"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{username}:'{password}'@{host}/{database}"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    
 
 # this variable, db, will be used for all SQLAlchemy commands
@@ -74,6 +74,8 @@ def end_survey():
         Rid = request.form['rid']
         time_ended = datetime.now()
 
+        RID_obj = RID(rid=Rid, time_submitted=time_ended)
+        db.session.add(RID_obj)  
         db.session.commit()
 
     resp= RID.query.filter_by(rid=Rid).first()
