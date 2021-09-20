@@ -74,12 +74,8 @@ def end_survey():
         Rid = request.form['rid']
         time_ended = datetime.now()
 
-<<<<<<< HEAD
         RID_obj = RID(rid=Rid, time_submitted=time_ended)
         db.session.add(RID_obj)  
-=======
-        RID_obj = RID(rid=Rid)
->>>>>>> 4a41d9b24bd68cc251f20f0975e0fdf1843c147a
         db.session.commit()
 
     resp= RID.query.filter_by(rid=Rid).first()
