@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
 #give the values of the following variables for connect MySQL db
 
 username = "root"
-password = "YES"
+password = ""
 host = "localhost"
 database = "market"
 
