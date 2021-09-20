@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
 #give the values of the following variables for connect MySQL db
 
 username = "root"
-password = "YES"
+password = ""
 host = "localhost"
 database = "market"
 
@@ -71,8 +71,8 @@ def end_survey():
         Rid = request.form['rid']
         time_ended = datetime.now()
 
-        RID_obj = RID(rid=Rid, time_submitted=time_ended)
-        db.session.add(RID_obj)
+        RID_obj = RID(rid=Rid)
+        # db.session.add(RID_obj)
         db.session.commit()
 
     resp= RID.query.filter_by(rid=Rid).first()
