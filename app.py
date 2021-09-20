@@ -68,19 +68,6 @@ def start_survey():
     body.append({'rid':resp.rid, 'time_started':time_started})
     return {'body':body}
 
-@app.route('/api/end_survey', methods=['POST'])
-def end_survey():
-    if request.method == 'POST':
-        Rid = request.form['rid']
-        time_ended = datetime.now()
-
-        db.session.commit()
-
-    resp= RID.query.filter_by(rid=Rid).first()
-    body = []
-
-    body.append({'rid':resp.rid, 'time_ended':time_ended})
-    return {'body':body}
 
 db.create_all()
 
