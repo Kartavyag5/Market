@@ -13,15 +13,9 @@ password = ""
 host = "localhost"
 database = "market"
 
-<<<<<<< HEAD
-app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{username}:'{password}'@{host}/{database}"
-#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False    
-=======
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:''@localhost/market'
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
->>>>>>> d10cd2ad3a44678ddce7826cdee6e67d4ad69f90
 
 # this variable, db, will be used for all SQLAlchemy commands
 db = SQLAlchemy(app)
