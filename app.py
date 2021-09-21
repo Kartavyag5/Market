@@ -69,7 +69,7 @@ def start_survey():
     body.append({'rid':resp.rid, 'time_started':time_started})
     return {'body': body}
 
-@app.route('/api/end_survey', methods=['POST'])
+@app.route('/api/end_survey', methods=['GET'])
 def end_survey():
     if request.method == 'POST':
         #Rid = request.form['rid']
