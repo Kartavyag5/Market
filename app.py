@@ -20,6 +20,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # this variable, db, will be used for all SQLAlchemy commands
 db = SQLAlchemy(app)
 
+#global variable for get value in all page
+Rid = 'no id'
+
 
 # models
 class RID(db.Model):
@@ -51,6 +54,7 @@ def start_survey():
     # when you give rid in post request, every time new rid obj created with datetime.now()
     # you have to give unique rid in request.
     if request.method=='POST':
+        global Rid
         Rid = request.form['rid']
         time_started = datetime.now()
         
@@ -68,14 +72,19 @@ def start_survey():
 @app.route('/api/end_survey', methods=['POST'])
 def end_survey():
     if request.method == 'POST':
-        Rid = request.form['rid']
+        #Rid = request.form['rid']
         time_ended = datetime.now()
 
-        RID_obj = RID(rid=Rid)
+        #RID_obj = RID(rid=Rid)
         # db.session.add(RID_obj)
-        db.session.commit()
 
     resp= RID.query.filter_by(rid=Rid).first()
+    if resp:
+        resp.time_submitted = datetime.now()
+        db.session.commit()
+    else:
+        return {'msg':'id not found'}
+
     body = []
 
     body.append({'rid':resp.rid, 'time_ended':resp.time_submitted})
