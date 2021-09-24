@@ -8,12 +8,12 @@ app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
 
 #give the values of the following variables for connect MySQL db
 
-username = "root"
-password = ""
-host = "localhost"
-database = "market"
+# username = "root"
+# password = "Kart$1798"
+# host = "localhost"
+# database = "market"
 
-app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:''@localhost/market'
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Kart$1798@localhost/market"
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
