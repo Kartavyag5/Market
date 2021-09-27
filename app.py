@@ -66,6 +66,29 @@ db.create_all()
 def main():
     return 'Root of Market API'
 
+@app.route('/api/prices')
+def prices():
+    if request.method == 'GET':
+        market = Market.query.all()
+        all_market = []
+
+        for i in market:
+            option = Option.query.filter_by(market=i.id)
+            count = option.count()
+            for j in option:
+                j.price = 1/count
+                db.session.commit()
+                all_market.append({
+                    'id': i.id, 
+                    'option': j.option,
+                    'quatity': j.quantity, 
+                    'price': j.price,
+                    'market': i.market_name,
+                })
+            
+    return {'all-markets':all_market}   
+
+
 @app.route('/api/start_survey', methods=['POST'])
 def start_survey():
     # when you give rid in post request, every time new rid obj created with datetime.now()
@@ -81,16 +104,7 @@ def start_survey():
 
     # this query will return the last created rid object
     resp= RID.query.filter_by(rid=Rid).first()
-
-    # for testing the price change as option count
-    options = Option.query.filter_by(market=1)
-    op_count = options.count() 
-    if op_count:
-        for i in options:
-            i.price = 1/op_count
-            db.session.commit()
     body=[]
-    
     body.append({'rid':resp.rid, 'time_started':time_started,})
     return {'body': body}
 
