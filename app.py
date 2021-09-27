@@ -38,11 +38,11 @@ class RID(db.Model):
 
 class Market(db.Model):
     id = db.Column(db.Integer, primary_key=True)   
-    rid = db.Column(db.Integer(), db.ForeignKey('rid.rid'))     # first rid is table name and second rid is field name
+    #rid = db.Column(db.Integer(), db.ForeignKey('rid.rid'))     # first rid is table name and second rid is field name
     market_name = db.Column(db.String(255), nullable=False, unique=True)
-    market_info = db.Column(db.String)
+    market_info = db.Column(db.String(400))
     question = db.Column(db.String(500), unique=True)
-    options = db.relationship('Option',backref='market')
+    #options = db.relationship('Option',backref='market')
 
     def __repr__(self):
         return f"{self.market_name}"
@@ -50,15 +50,17 @@ class Market(db.Model):
 
 class Option(db.Model):
     id = db.Column(db.Integer, primary_key=True)   
-    rid = db.Column(db.Integer(), db.ForeignKey('rid.rid'))         # first rid is table name and second rid is field name
-    market = db.Column(db.Integer(), db.ForeignKey('market.id'))     
+    #rid = db.Column(db.Integer(), db.ForeignKey('rid.rid'))         # first rid is table name and second rid is field name
+    market = db.Column(db.Integer(), db.ForeignKey(Market.id))     
     option = db.Column(db.String(100), unique=True)
     quantity = db.Column(db.Integer())
-    price = db.Column(db.Integer())
+    price = db.Column(db.Float())
     # grand_total = db.Column(db.Integer(),range(max=10))
 
     def __repr__(self):
         return f"{self.market.market_name}"
+
+db.create_all()
 
 @app.route('/api')
 def main():
@@ -79,9 +81,17 @@ def start_survey():
 
     # this query will return the last created rid object
     resp= RID.query.filter_by(rid=Rid).first()
+
+    # for testing the price change as option count
+    options = Option.query.filter_by(market=1)
+    op_count = options.count() 
+    if op_count:
+        for i in options:
+            i.price = 1/op_count
+            db.session.commit()
     body=[]
     
-    body.append({'rid':resp.rid, 'time_started':time_started})
+    body.append({'rid':resp.rid, 'time_started':time_started,})
     return {'body': body}
 
 @app.route('/api/end_survey', methods=['GET'])
@@ -92,8 +102,8 @@ def end_survey():
 
         #RID_obj = RID(rid=Rid)
         # db.session.add(RID_obj)
-
     resp= RID.query.filter_by(rid=Rid).first()
+
     if resp:
         resp.time_submitted = datetime.now()
         db.session.commit()
@@ -106,7 +116,7 @@ def end_survey():
     return {'body':body}
 
 
-db.create_all()
+
 
 # run flask app
 if __name__ == '__main__':
