@@ -36,14 +36,29 @@ class RID(db.Model):
     def __repr__(self):
         return f"{self.time_started}:{self.time_submitted}"
 
-# class Question(db.Model):
-#     q1 = db.Column(db.Integer, nullable=False)
-#     q2 = db.Column(db.Integer, nullable=False)
-#     q3 = db.Column(db.Integer, nullable=False)
-#     q4 = db.Column(db.Integer, nullable=False)
+class Market(db.Model):
+    id = db.Column(db.Integer, primary_key=True)   
+    rid = db.Column(db.Integer(), db.ForeignKey('rid.rid'))     # first rid is table name and second rid is field name
+    market_name = db.Column(db.String(255), nullable=False, unique=True)
+    market_info = db.Column(db.String)
+    question = db.Column(db.String(500), unique=True)
+    options = db.relationship('Option',backref='market')
 
-#     def __repr__(self):
-#         return f"{self.q1}:{self.q2}:{self.q3}:{self.q4}"
+    def __repr__(self):
+        return f"{self.market_name}"
+
+
+class Option(db.Model):
+    id = db.Column(db.Integer, primary_key=True)   
+    rid = db.Column(db.Integer(), db.ForeignKey('rid.rid'))         # first rid is table name and second rid is field name
+    market = db.Column(db.Integer(), db.ForeignKey('market.id'))     
+    option = db.Column(db.String(100), unique=True)
+    quantity = db.Column(db.Integer())
+    price = db.Column(db.Integer())
+    # grand_total = db.Column(db.Integer(),range(max=10))
+
+    def __repr__(self):
+        return f"{self.market.market_name}"
 
 @app.route('/api')
 def main():
