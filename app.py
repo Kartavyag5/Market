@@ -25,7 +25,8 @@ Rid = 'no id'
 
 # RID Model
 class RID(db.Model):
-    rid = db.Column(db.String(200), primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
+    rid = db.Column(db.String(200), unique=True)
     time_started = db.Column(db.DateTime, default=datetime.now)
     time_submitted = db.Column(db.DateTime, nullable=True, default=None)
     
@@ -39,18 +40,15 @@ class RID(db.Model):
 # Market1 Model
 class Market_1(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.rid))
-
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
     money_bet_4 = db.Column(db.Float())
-    
     price_1 = db.Column(db.Float())
     price_2 = db.Column(db.Float())
     price_3 = db.Column(db.Float())
     price_4 = db.Column(db.Float())
-
     bet_1 = db.Column(db.Integer())
     bet_2 = db.Column(db.Integer())
     bet_3 = db.Column(db.Integer())
@@ -64,20 +62,17 @@ class Market_1(db.Model):
 # Market2 Model
 class Market_2(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.rid))
-
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
-    
     price_1 = db.Column(db.Float())
     price_2 = db.Column(db.Float())
     price_3 = db.Column(db.Float())
-
     bet_1 = db.Column(db.Integer())
     bet_2 = db.Column(db.Integer())
     bet_3 = db.Column(db.Integer())
-
+    
     def __repr__(self):
         return f"{self.rid.rid}"
 
@@ -85,14 +80,11 @@ class Market_2(db.Model):
 # Market3 Model
 class Market_3(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.rid))
-
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
-    
     price_1 = db.Column(db.Float())
     price_2 = db.Column(db.Float())
-
     bet_1 = db.Column(db.Integer())
     bet_2 = db.Column(db.Integer())
 
