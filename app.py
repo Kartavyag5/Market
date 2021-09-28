@@ -23,13 +23,12 @@ db = SQLAlchemy(app)
 #global variable for get value in all page
 Rid = 'no id'
 
-
-# models
+# RID Model
 class RID(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)   
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.String(200), primary_key=True, unique=True)
     time_started = db.Column(db.DateTime, default=datetime.now)
-    time_submitted = db.Column(db.DateTime,nullable=True, default=None))
+    time_submitted = db.Column(db.DateTime, nullable=True, default=None)
     
     def __repr__(self):
         return f"{self.rid}"
@@ -37,12 +36,70 @@ class RID(db.Model):
     def __repr__(self):
         return f"{self.time_started}:{self.time_submitted}"
 
-class Market(db.Model):
+
+# Market1 Model
+class Market_1(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
-    money_bet = db.Column(db.Float())
-    prices = db.Column(db.Float())
-    bets = db.Column(db.Integer())
+
+    money_bet_1 = db.Column(db.Float())
+    money_bet_2 = db.Column(db.Float())
+    money_bet_3 = db.Column(db.Float())
+    money_bet_4 = db.Column(db.Float())
+    
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    price_4 = db.Column(db.Float())
+
+    bet_1 = db.Column(db.Integer())
+    bet_2 = db.Column(db.Integer())
+    bet_3 = db.Column(db.Integer())
+    bet_4 = db.Column(db.Integer())
+
+    def __repr__(self):
+        return f"{self.rid.rid}"
+
+
+
+# Market2 Model
+class Market_2(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
+
+    money_bet_1 = db.Column(db.Float())
+    money_bet_2 = db.Column(db.Float())
+    money_bet_3 = db.Column(db.Float())
+    
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+
+    bet_1 = db.Column(db.Integer())
+    bet_2 = db.Column(db.Integer())
+    bet_3 = db.Column(db.Integer())
+
+    def __repr__(self):
+        return f"{self.rid.rid}"
+
+
+# Market3 Model
+class Market_3(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
+
+    money_bet_1 = db.Column(db.Float())
+    money_bet_2 = db.Column(db.Float())
+    
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+
+    bet_1 = db.Column(db.Integer())
+    bet_2 = db.Column(db.Integer())
+
+    def __repr__(self):
+        return f"{self.rid.rid}"
+
 
 db.create_all()
 
