@@ -26,6 +26,7 @@ Rid = 'no id'
 
 # models
 class RID(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     rid = db.Column(db.String(200), primary_key=True, unique=True)
     time_started = db.Column(db.DateTime, default=datetime.now)
     time_submitted = db.Column(db.DateTime,nullable=True, default=None)
@@ -37,28 +38,12 @@ class RID(db.Model):
         return f"{self.time_started}:{self.time_submitted}"
 
 class Market(db.Model):
-    id = db.Column(db.Integer, primary_key=True)   
-    #rid = db.Column(db.Integer(), db.ForeignKey('rid.rid'))     # first rid is table name and second rid is field name
-    market_name = db.Column(db.String(255), nullable=False, unique=True)
-    market_info = db.Column(db.String(400))
-    question = db.Column(db.String(500), unique=True)
-    #options = db.relationship('Option',backref='market')
-
-    def __repr__(self):
-        return f"{self.market_name}"
-
-
-class Option(db.Model):
-    id = db.Column(db.Integer, primary_key=True)   
-    #rid = db.Column(db.Integer(), db.ForeignKey('rid.rid'))         # first rid is table name and second rid is field name
-    market = db.Column(db.Integer(), db.ForeignKey(Market.id))     
-    option = db.Column(db.String(100), unique=True)
-    quantity = db.Column(db.Integer())
-    price = db.Column(db.Float())
-    # grand_total = db.Column(db.Integer(),range(max=10))
-
-    def __repr__(self):
-        return f"{self.market.market_name}"
+    money_bet = db.Column(db.Float())
+    prices = db.Column(db.Float())
+    bets = db.Column(db.Integer())
+    
+#     def __repr__(self):
+#         return f"{self.market_name}"
 
 db.create_all()
 
