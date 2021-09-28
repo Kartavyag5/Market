@@ -26,7 +26,7 @@ Rid = 'no id'
 
 # models
 class RID(db.Model):
-    id = db.Column(db.Integer, primary_key=True)   
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)   
     rid = db.Column(db.String(200), primary_key=True, unique=True)
     time_started = db.Column(db.DateTime, default=datetime.now)
     time_submitted = db.Column(db.DateTime,nullable=True, default=None))
@@ -38,7 +38,7 @@ class RID(db.Model):
         return f"{self.time_started}:{self.time_submitted}"
 
 class Market(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
     money_bet = db.Column(db.Float())
     prices = db.Column(db.Float())
