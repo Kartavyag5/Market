@@ -100,6 +100,24 @@ def main():
 
 @app.route('/api/prices')
 def prices():
+# assume the data that comes from front end:
+# {
+#   "data": {
+#     "market_1": {
+#       "option_1": {
+#         "price": 4.75,
+#         "bet": 2
+#       }
+#     },
+#     "market_2": {
+#       "option_1": {
+#         "price": 3.75,
+#         "bet": 2
+#       }
+#     }
+#   }
+# }
+
 
     if request.method == 'GET':
         m1 = Market_1.query.all()
