@@ -25,7 +25,6 @@ Rid = 'no id'
 
 # RID Model
 class RID(db.Model):
-    id = db.Column(db.Integer, autoincrement=True)
     rid = db.Column(db.String(200), primary_key=True, unique=True)
     time_started = db.Column(db.DateTime, default=datetime.now)
     time_submitted = db.Column(db.DateTime, nullable=True, default=None)
@@ -40,7 +39,7 @@ class RID(db.Model):
 # Market1 Model
 class Market_1(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.rid))
 
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
@@ -65,7 +64,7 @@ class Market_1(db.Model):
 # Market2 Model
 class Market_2(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.rid))
 
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
@@ -86,7 +85,7 @@ class Market_2(db.Model):
 # Market3 Model
 class Market_3(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.rid))
 
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
