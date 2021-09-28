@@ -40,7 +40,7 @@ class RID(db.Model):
 # Market1 Model
 class Market_1(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -62,7 +62,7 @@ class Market_1(db.Model):
 # Market2 Model
 class Market_2(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -80,7 +80,7 @@ class Market_2(db.Model):
 # Market3 Model
 class Market_3(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id))
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     price_1 = db.Column(db.Float())
@@ -100,25 +100,60 @@ def main():
 
 @app.route('/api/prices')
 def prices():
-    if request.method == 'GET':
-        market = Market.query.all()
-        all_market = []
 
-        for i in market:
-            option = Option.query.filter_by(market=i.id)
-            count = option.count()
-            for j in option:
-                j.price = 1/count
-                db.session.commit()
-                all_market.append({
-                    'id': i.id, 
-                    'option': j.option,
-                    'quatity': j.quantity, 
-                    'price': j.price,
-                    'market': i.market_name,
-                })
+    if request.method == 'GET':
+        m1 = Market_1.query.all()
+        m2 = Market_2.query.all()
+        m3 = Market_3.query.all()
+        market1 = []
+        market2 = []
+        market3 = []
+
+        for i in m1:
+            market1.append({
+                'rid': i.rid,
+                'money_bet_1':i.money_bet_1,
+                'money_bet_2':i.money_bet_2,
+                'money_bet_3':i.money_bet_3,
+                'money_bet_4':i.money_bet_4,
+                'price_1': i.price_1,
+                'price_2': i.price_2,
+                'price_3': i.price_3,
+                'price_4': i.price_4,
+                'bet_1': i.bet_1,
+                'bet_2': i.bet_2,
+                'bet_3': i.bet_3,
+                'bet_4': i.bet_4,
+            })
+        
+        for j in m2:
+            market2.append({
+                'rid': j.rid,
+                'money_bet_1':j.money_bet_1,
+                'money_bet_2':j.money_bet_2,
+                'money_bet_3':j.money_bet_3,
+                'price_1': j.price_1,
+                'price_2': j.price_2,
+                'price_3': j.price_3,
+                'bet_1': j.bet_1,
+                'bet_2': j.bet_2,
+                'bet_3': j.bet_3,
+            })
+        
+        for k in m3:
+            market3.append({
+                'rid': k.rid,
+                'money_bet_1':k.money_bet_1,
+                'money_bet_2':k.money_bet_2,
+                'price_1': k.price_1,
+                'price_2': k.price_2,
+                'bet_1': k.bet_1,
+                'bet_2': k.bet_2,
+                
+            })
             
-    return {'all-markets':all_market}   
+                
+    return {'market1':market1, 'market2':market2, 'market3':market3} 
 
 
 @app.route('/api/start_survey', methods=['POST'])
