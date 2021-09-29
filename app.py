@@ -94,31 +94,62 @@ class Market_3(db.Model):
 
 db.create_all()
 
+#this is data of sum of market all money
+
+
 @app.route('/api')
 def main():
     return 'Root of Market API'
 
 @app.route('/api/prices')
 def prices():
-# assume the data that comes from front end:
-# {
-#   "data": {
-#     "market_1": {
-#       "option_1": {
-#         "price": 4.75,
-#         "bet": 2
-#       }
-#     },
-#     "market_2": {
-#       "option_1": {
-#         "price": 3.75,
-#         "bet": 2
-#       }
-#     }
-#   }
-# }
+    
+    # this response is for the testing purpose
+
+    # market = 1
+    # option = 2
+    # bet = 2
+
+    # market = 1
+    # option = 3
+    # bet = 4
+
+    Rid = 1
+
+    #prices calculation after submit
+
+    #update sum after every submit
+    sum1 =  10+10+10+10+0.5+0.75
 
 
+
+    price1 = 10/sum1
+    price2 = (10+0.5)/sum1
+    price3 = (10+0.75)/sum1
+    price4 = 10/sum1
+
+
+    market1_obj = Market_1(
+                    rid=Rid,
+                    money_bet_1= 0,
+                    money_bet_2= 2*0.25,
+                    money_bet_3= 3*0.25,
+                    money_bet_4=0,
+                    price_1= price1,
+                    price_2= price2,
+                    price_3= price3,
+                    price_4= price4,
+                    bet_1 = 0,
+                    bet_2 = 2,
+                    bet_3 = 3,
+                    bet_4 = 0,
+                    )
+
+    db.session.add(market1_obj)  
+    db.session.commit()
+
+
+                
     if request.method == 'GET':
         m1 = Market_1.query.all()
         m2 = Market_2.query.all()
