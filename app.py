@@ -45,10 +45,12 @@ class Market_1(db.Model):
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
     money_bet_4 = db.Column(db.Float())
+    
     price_1 = db.Column(db.Float())
     price_2 = db.Column(db.Float())
     price_3 = db.Column(db.Float())
     price_4 = db.Column(db.Float())
+    
     bet_1 = db.Column(db.Integer())
     bet_2 = db.Column(db.Integer())
     bet_3 = db.Column(db.Integer())
@@ -66,9 +68,11 @@ class Market_2(db.Model):
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
+    
     price_1 = db.Column(db.Float())
     price_2 = db.Column(db.Float())
     price_3 = db.Column(db.Float())
+    
     bet_1 = db.Column(db.Integer())
     bet_2 = db.Column(db.Integer())
     bet_3 = db.Column(db.Integer())
@@ -83,8 +87,10 @@ class Market_3(db.Model):
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
+    
     price_1 = db.Column(db.Float())
     price_2 = db.Column(db.Float())
+    
     bet_1 = db.Column(db.Integer())
     bet_2 = db.Column(db.Integer())
 
@@ -161,14 +167,16 @@ def prices():
         for i in m1:
             market1.append({
                 'rid': i.rid,
-                'money_bet_1':i.money_bet_1,
-                'money_bet_2':i.money_bet_2,
-                'money_bet_3':i.money_bet_3,
-                'money_bet_4':i.money_bet_4,
+                'money_bet_1': i.money_bet_1,
+                'money_bet_2': i.money_bet_2,
+                'money_bet_3': i.money_bet_3,
+                'money_bet_4': i.money_bet_4,
+                
                 'price_1': i.price_1,
                 'price_2': i.price_2,
                 'price_3': i.price_3,
                 'price_4': i.price_4,
+                
                 'bet_1': i.bet_1,
                 'bet_2': i.bet_2,
                 'bet_3': i.bet_3,
@@ -178,12 +186,14 @@ def prices():
         for j in m2:
             market2.append({
                 'rid': j.rid,
-                'money_bet_1':j.money_bet_1,
-                'money_bet_2':j.money_bet_2,
-                'money_bet_3':j.money_bet_3,
+                'money_bet_1': j.money_bet_1,
+                'money_bet_2': j.money_bet_2,
+                'money_bet_3': j.money_bet_3,
+                
                 'price_1': j.price_1,
                 'price_2': j.price_2,
                 'price_3': j.price_3,
+                
                 'bet_1': j.bet_1,
                 'bet_2': j.bet_2,
                 'bet_3': j.bet_3,
@@ -192,17 +202,18 @@ def prices():
         for k in m3:
             market3.append({
                 'rid': k.rid,
-                'money_bet_1':k.money_bet_1,
-                'money_bet_2':k.money_bet_2,
+                'money_bet_1': k.money_bet_1,
+                'money_bet_2': k.money_bet_2,
+                
                 'price_1': k.price_1,
                 'price_2': k.price_2,
+                
                 'bet_1': k.bet_1,
                 'bet_2': k.bet_2,
                 
             })
-            
-                
-    return {'market1':market1, 'market2':market2, 'market3':market3} 
+           
+    return {'market1': market1, 'market2': market2, 'market3': market3} 
 
 
 @app.route('/api/start_survey', methods=['POST'])
@@ -220,17 +231,17 @@ def start_survey():
 
     # this query will return the last created rid object
     resp= RID.query.filter_by(rid=Rid).first()
-    body=[]
-    body.append({'rid':resp.rid, 'time_started':time_started,})
+    body = []
+    body.append({'rid':resp.rid, 'time_started':time_started})
     return {'body': body}
 
 @app.route('/api/end_survey', methods=['GET'])
 def end_survey():
     if request.method == 'GET':
-        #Rid = request.form['rid']
+        # Rid = request.form['rid']
         time_ended = datetime.now()
 
-        #RID_obj = RID(rid=Rid)
+        # RID_obj = RID(rid=Rid)
         # db.session.add(RID_obj)
     resp= RID.query.filter_by(rid=Rid).first()
 
@@ -243,9 +254,7 @@ def end_survey():
     body = []
 
     body.append({'rid':resp.rid, 'time_ended':resp.time_submitted})
-    return {'body':body}
-
-
+    return {'body': body}
 
 
 # run flask app
