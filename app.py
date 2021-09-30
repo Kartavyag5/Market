@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from datetime import datetime
 
 app = Flask(__name__)
@@ -13,8 +14,8 @@ app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
 # host = "localhost"
 # database = "market"
 
-#app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Kart$1798@localhost/market"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
+#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Kart$1798@localhost/market"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 # this variable, db, will be used for all SQLAlchemy commands
@@ -127,13 +128,10 @@ def prices():
     #update sum after every submit
     sum1 =  10+10+10+10+0.5+0.75
 
-
-
     price1 = 10/sum1
     price2 = (10+0.5)/sum1
     price3 = (10+0.75)/sum1
     price4 = 10/sum1
-
 
     market1_obj = Market_1(
                     rid=Rid,
@@ -154,7 +152,29 @@ def prices():
     db.session.add(market1_obj)  
     db.session.commit()
 
+    # all money bet sums for market_1
+    sum_money_bet_1 = db.session.query(func.sum(Market_1.money_bet_1)).scalar()
+    sum_money_bet_2 = db.session.query(func.sum(Market_1.money_bet_2)).scalar()
+    sum_money_bet_3 = db.session.query(func.sum(Market_1.money_bet_3)).scalar()
+    sum_money_bet_4 = db.session.query(func.sum(Market_1.money_bet_4)).scalar()
+    
+    sum_Market1 = sum_money_bet_1 + sum_money_bet_2 + sum_money_bet_3 + sum_money_bet_4
 
+    #this is the updated prices for new user
+    price1 = sum_money_bet_1/sum_Market1
+    price2 = sum_money_bet_2/sum_Market1
+    price3 = sum_money_bet_3/sum_Market1
+    price4 = sum_money_bet_4/sum_Market1
+
+    user_bet = Market_1.query.filter_by(rid = 1)
+    for i in user_bet:
+        i.price1 = price1
+        i.price2 = price2
+        i.price3 = price3
+        i.price4 = price4
+
+    db.session.commit()
+    
                 
     if request.method == 'GET':
         m1 = Market_1.query.all()
@@ -229,20 +249,54 @@ def start_survey():
         db.session.add(RID_obj)  
         db.session.commit()
 
+    # this is for get the latest price of options in all markets
+    m1 = db.session.query(Market_1).order_by(Market_1.id.desc()).first()
+    m2 = db.session.query(Market_2).order_by(Market_2.id.desc()).first()
+    m3 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
+    market1 = []
+    market2 = []
+    market3 = []
+
+    
+    market1.append({
+            'price_1': m1.price_1,
+            'price_2': m1.price_2,
+            'price_3': m1.price_3,
+            'price_4': m1.price_4,
+        })
+    
+    
+    market2.append({
+            'price_1': m2.price_1,
+            'price_2': m2.price_2,
+            'price_3': m2.price_3,
+        })
+    
+    
+    market3.append({
+            'price_1': m3.price_1,
+            'price_2': m3.price_2,
+        })
+
     # this query will return the last created rid object
     resp= RID.query.filter_by(rid=Rid).first()
     body = []
-    body.append({'rid':resp.rid, 'time_started':time_started})
+    body.append({
+            'rid':resp.rid, 
+            'time_started':time_started, 
+            'market1': market1, 
+            'market2': market2, 
+            'market3': market3,
+            })
+            
     return {'body': body}
 
 @app.route('/api/end_survey', methods=['GET'])
 def end_survey():
     if request.method == 'GET':
-        # Rid = request.form['rid']
         time_ended = datetime.now()
 
-        # RID_obj = RID(rid=Rid)
-        # db.session.add(RID_obj)
+
     resp= RID.query.filter_by(rid=Rid).first()
 
     if resp:
