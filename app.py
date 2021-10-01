@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
-from datetime import datetime
+from datetime import MAXYEAR, datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
@@ -103,138 +103,13 @@ db.create_all()
 
 #this is data of sum of market all money
 
-
+#------------Root API------------------
 @app.route('/api')
 def main():
     return 'Root of Market API'
 
-@app.route('/api/prices')
-def prices():
-    
-    # this response is for the testing purpose
 
-    # market = 1
-    # option = 2
-    # bet = 2
-
-    # market = 1
-    # option = 3
-    # bet = 4
-
-    Rid = 1
-
-    #prices calculation after submit
-
-    #update sum after every submit
-    sum1 =  10+10+10+10+0.5+0.75
-
-    price1 = 10/sum1
-    price2 = (10+0.5)/sum1
-    price3 = (10+0.75)/sum1
-    price4 = 10/sum1
-
-    market1_obj = Market_1(
-                    rid=Rid,
-                    money_bet_1= 0,
-                    money_bet_2= 2*0.25,
-                    money_bet_3= 3*0.25,
-                    money_bet_4=0,
-                    price_1= price1,
-                    price_2= price2,
-                    price_3= price3,
-                    price_4= price4,
-                    bet_1 = 0,
-                    bet_2 = 2,
-                    bet_3 = 3,
-                    bet_4 = 0,
-                    )
-
-    db.session.add(market1_obj)  
-    db.session.commit()
-
-    # all money bet sums for market_1
-    sum_money_bet_1 = db.session.query(func.sum(Market_1.money_bet_1)).scalar()
-    sum_money_bet_2 = db.session.query(func.sum(Market_1.money_bet_2)).scalar()
-    sum_money_bet_3 = db.session.query(func.sum(Market_1.money_bet_3)).scalar()
-    sum_money_bet_4 = db.session.query(func.sum(Market_1.money_bet_4)).scalar()
-    
-    sum_Market1 = sum_money_bet_1 + sum_money_bet_2 + sum_money_bet_3 + sum_money_bet_4
-
-    #this is the updated prices for new user
-    price1 = sum_money_bet_1/sum_Market1
-    price2 = sum_money_bet_2/sum_Market1
-    price3 = sum_money_bet_3/sum_Market1
-    price4 = sum_money_bet_4/sum_Market1
-
-    user_bet = Market_1.query.filter_by(rid = 1)
-    for i in user_bet:
-        i.price1 = price1
-        i.price2 = price2
-        i.price3 = price3
-        i.price4 = price4
-
-    db.session.commit()
-    
-                
-    if request.method == 'GET':
-        m1 = Market_1.query.all()
-        m2 = Market_2.query.all()
-        m3 = Market_3.query.all()
-        market1 = []
-        market2 = []
-        market3 = []
-
-        for i in m1:
-            market1.append({
-                'rid': i.rid,
-                'money_bet_1': i.money_bet_1,
-                'money_bet_2': i.money_bet_2,
-                'money_bet_3': i.money_bet_3,
-                'money_bet_4': i.money_bet_4,
-                
-                'price_1': i.price_1,
-                'price_2': i.price_2,
-                'price_3': i.price_3,
-                'price_4': i.price_4,
-                
-                'bet_1': i.bet_1,
-                'bet_2': i.bet_2,
-                'bet_3': i.bet_3,
-                'bet_4': i.bet_4,
-            })
-        
-        for j in m2:
-            market2.append({
-                'rid': j.rid,
-                'money_bet_1': j.money_bet_1,
-                'money_bet_2': j.money_bet_2,
-                'money_bet_3': j.money_bet_3,
-                
-                'price_1': j.price_1,
-                'price_2': j.price_2,
-                'price_3': j.price_3,
-                
-                'bet_1': j.bet_1,
-                'bet_2': j.bet_2,
-                'bet_3': j.bet_3,
-            })
-        
-        for k in m3:
-            market3.append({
-                'rid': k.rid,
-                'money_bet_1': k.money_bet_1,
-                'money_bet_2': k.money_bet_2,
-                
-                'price_1': k.price_1,
-                'price_2': k.price_2,
-                
-                'bet_1': k.bet_1,
-                'bet_2': k.bet_2,
-                
-            })
-           
-    return {'market1': market1, 'market2': market2, 'market3': market3} 
-
+#-------------Start Survey API-------------------------
 
 @app.route('/api/start_survey', methods=['POST'])
 def start_survey():
@@ -259,23 +134,41 @@ def start_survey():
 
     
     market1.append({
+            'money_bet_1':0,
+            'money_bet_2':0,
+            'money_bet_3':0,
+            'money_bet_4':0,
             'price_1': m1.price_1,
             'price_2': m1.price_2,
             'price_3': m1.price_3,
             'price_4': m1.price_4,
+            'bet_1':0,
+            'bet_2':0,
+            'bet_3':0,
+            'bet_4':0,
         })
     
     
     market2.append({
+            'money_bet_1':0,
+            'money_bet_2':0,
+            'money_bet_3':0,
             'price_1': m2.price_1,
             'price_2': m2.price_2,
             'price_3': m2.price_3,
+            'bet_1': 0,
+            'bet_2': 0,
+            'bet_3': 0,
         })
     
     
     market3.append({
+            'money_bet_1':0,
+            'money_bet_2':0,
             'price_1': m3.price_1,
             'price_2': m3.price_2,
+            'bet_1': 0,
+            'bet_2': 0,
         })
 
     # this query will return the last created rid object
@@ -290,6 +183,9 @@ def start_survey():
             })
             
     return {'body': body}
+
+
+#------------End survey API--------------------
 
 @app.route('/api/end_survey', methods=['GET'])
 def end_survey():
@@ -311,7 +207,134 @@ def end_survey():
     return {'body': body}
 
 
-# run flask app
+#----------prices API-------------------
+
+@app.route('/api/prices')
+def prices():
+    
+    # this response is for the testing purpose
+
+    # market = 1
+    # option = 2
+    # bet = 2
+
+    # market = 1
+    # option = 3
+    # bet = 3
+    #Rid = 1
+
+    #this is for get id of user who start survey
+    resp= RID.query.filter_by(rid=Rid).first()
+    if not resp:
+        return {'msg':'no user started survey'}
+
+    #this is for apply the latest price
+    user_bet = Market_1.query.order_by(Market_1.id.desc()).first()
+
+    market1_obj = Market_1(
+                    rid=resp.id,
+                    money_bet_1= 0,
+                    money_bet_2= 2*user_bet.price_2,
+                    money_bet_3= 3*user_bet.price_3,
+                    money_bet_4= 0,
+                    # price_1= price1,
+                    # price_2= price2,
+                    # price_3= price3,
+                    # price_4= price4,
+                    bet_1 = 0,
+                    bet_2 = 2,
+                    bet_3 = 3,
+                    bet_4 = 0,
+                    )
+
+    db.session.add(market1_obj)  
+    db.session.commit()
+
+    #---prices calculation after submit-------
+
+    # all money bet sums for market_1
+    sum_money_bet_1 = db.session.query(func.sum(Market_1.money_bet_1)).scalar()
+    sum_money_bet_2 = db.session.query(func.sum(Market_1.money_bet_2)).scalar()
+    sum_money_bet_3 = db.session.query(func.sum(Market_1.money_bet_3)).scalar()
+    sum_money_bet_4 = db.session.query(func.sum(Market_1.money_bet_4)).scalar()
+    
+    sum_Market1 = sum_money_bet_1 + sum_money_bet_2 + sum_money_bet_3 + sum_money_bet_4
+
+    #this is the updated prices for new user
+    price1 = sum_money_bet_1/sum_Market1
+    price2 = sum_money_bet_2/sum_Market1
+    price3 = sum_money_bet_3/sum_Market1
+    price4 = sum_money_bet_4/sum_Market1
+
+    user_bet = Market_1.query.order_by(Market_1.id.desc()).first()
+    user_bet.price_1 = price1
+    user_bet.price_2 = price2
+    user_bet.price_3 = price3
+    user_bet.price_4 = price4
+
+    db.session.commit()
+    
+    # for get the all objects of all market
+    m1 = Market_1.query.all()
+    m2 = Market_2.query.all()
+    m3 = Market_3.query.all()
+    market1 = []
+    market2 = []
+    market3 = []
+
+    for i in m1:
+        market1.append({
+            'rid': i.rid,
+            'money_bet_1': i.money_bet_1,
+            'money_bet_2': i.money_bet_2,
+            'money_bet_3': i.money_bet_3,
+            'money_bet_4': i.money_bet_4,
+            
+            'price_1': i.price_1,
+            'price_2': i.price_2,
+            'price_3': i.price_3,
+            'price_4': i.price_4,
+            
+            'bet_1': i.bet_1,
+            'bet_2': i.bet_2,
+            'bet_3': i.bet_3,
+            'bet_4': i.bet_4,
+        })
+    
+    for j in m2:
+        market2.append({
+            'rid': j.rid,
+            'money_bet_1': j.money_bet_1,
+            'money_bet_2': j.money_bet_2,
+            'money_bet_3': j.money_bet_3,
+            
+            'price_1': j.price_1,
+            'price_2': j.price_2,
+            'price_3': j.price_3,
+            
+            'bet_1': j.bet_1,
+            'bet_2': j.bet_2,
+            'bet_3': j.bet_3,
+        })
+    
+    for k in m3:
+        market3.append({
+            'rid': k.rid,
+            'money_bet_1': k.money_bet_1,
+            'money_bet_2': k.money_bet_2,
+            
+            'price_1': k.price_1,
+            'price_2': k.price_2,
+            
+            'bet_1': k.bet_1,
+            'bet_2': k.bet_2,
+            
+        })
+           
+    return {'market1': market1, 'market2': market2, 'market3': market3}
+
+
+#-----------run flask app------------------------
 if __name__ == '__main__':
     db.init_app(app)
     app.run(debug=True)
