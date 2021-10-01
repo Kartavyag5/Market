@@ -14,8 +14,8 @@ app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
 # host = "localhost"
 # database = "market"
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
-#app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Kart$1798@localhost/market"
+#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Kart$1798@localhost/market"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 # this variable, db, will be used for all SQLAlchemy commands
