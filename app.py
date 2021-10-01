@@ -119,6 +119,10 @@ def start_survey():
         global Rid
         Rid = request.form['rid']
         time_started = datetime.now()
+        Rid_check = RID.query.all()
+        for i in Rid_check:
+            if i.rid == Rid:
+                return {'msg':'rid is already used'}
         
         RID_obj = RID(rid=Rid)
         db.session.add(RID_obj)  
