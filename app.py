@@ -176,16 +176,16 @@ def start_survey():
     
     market2.append({
             'id':2,
-            'option1':{'id':21,'money_bet_1':0,'price_1': m2.price_1,'bet_1':0,},
-            'option2':{'id':22,'money_bet_2':0,'price_2': m2.price_2,'bet_2':0,},
-            'option3':{'id':23,'money_bet_3':0,'price_3': m2.price_3,'bet_3':0,},
+            'option1':{'id':21, 'money_bet_1':0, 'price_1':m2.price_1, 'bet_1':0,},
+            'option2':{'id':22, 'money_bet_2':0, 'price_2':m2.price_2, 'bet_2':0,},
+            'option3':{'id':23, 'money_bet_3':0, 'price_3':m2.price_3, 'bet_3':0,},
         })
     
     
     market3.append({
             'id':3,
-            'option1':{'id':31,'money_bet_1':0,'price_1': m3.price_1,'bet_1':0,},
-            'option2':{'id':32,'money_bet_2':0,'price_2': m3.price_2,'bet_2':0,},
+            'option1':{'id':31, 'money_bet_1':0, 'price_1':m3.price_1, 'bet_1':0,},
+            'option2':{'id':32, 'money_bet_2':0, 'price_2':m3.price_2, 'bet_2':0,},
         })
 
     # this query will return the last created rid object
@@ -302,10 +302,10 @@ def prices():
         market1.append({
             'id':1,
             'rid': i.rid,
-            'option1':{'id':11,'money_bet_1': i.money_bet_1,'price_1': i.price_1,'bet_1': i.bet_1,},
-            'option2':{'id':12,'money_bet_2': i.money_bet_2,'price_2': i.price_2,'bet_2': i.bet_2,},
-            'option3':{'id':13,'money_bet_3': i.money_bet_3,'price_3': i.price_3,'bet_3': i.bet_3,},
-            'option4':{'id':14,'money_bet_4': i.money_bet_4,'price_4': i.price_4,'bet_4': i.bet_4,},
+            'option1':{'id':11, 'money_bet_1':i.money_bet_1, 'price_1':i.price_1, 'bet_1':i.bet_1,},
+            'option2':{'id':12, 'money_bet_2':i.money_bet_2, 'price_2':i.price_2, 'bet_2':i.bet_2,},
+            'option3':{'id':13, 'money_bet_3':i.money_bet_3, 'price_3':i.price_3, 'bet_3':i.bet_3,},
+            'option4':{'id':14, 'money_bet_4':i.money_bet_4, 'price_4':i.price_4, 'bet_4':i.bet_4,},
         })
     
     for j in m2:
@@ -313,9 +313,9 @@ def prices():
         market2.append({
             'id':2,
             'rid': j.rid,
-            'option1':{'id':21,'money_bet_1': j.money_bet_1,'price_1': j.price_1,'bet_1': j.bet_1,},
-            'option2':{'id':22,'money_bet_2': j.money_bet_2,'price_2': j.price_2,'bet_2': j.bet_2,},
-            'option3':{'id':23,'money_bet_3': j.money_bet_3,'price_3': j.price_3,'bet_3': j.bet_3,},
+            'option1':{'id':21, 'money_bet_1':j.money_bet_1, 'price_1':j.price_1, 'bet_1':j.bet_1,},
+            'option2':{'id':22, 'money_bet_2':j.money_bet_2, 'price_2':j.price_2, 'bet_2':j.bet_2,},
+            'option3':{'id':23, 'money_bet_3':j.money_bet_3, 'price_3':j.price_3, 'bet_3':j.bet_3,},
         })
 
         
@@ -324,8 +324,8 @@ def prices():
         market3.append({
             'id':3,
             'rid': k.rid,
-            'option1':{'id':31,'money_bet_1': k.money_bet_1,'price_1': k.price_1,'bet_1': k.bet_1,},
-            'option2':{'id':32,'money_bet_2': k.money_bet_2,'price_2': k.price_2,'bet_2': k.bet_2,},
+            'option1':{'id':31, 'money_bet_1':k.money_bet_1, 'price_1':k.price_1, 'bet_1':k.bet_1,},
+            'option2':{'id':32, 'money_bet_2':k.money_bet_2, 'price_2':k.price_2, 'bet_2':k.bet_2,},
         })
 
            
@@ -333,18 +333,96 @@ def prices():
 
 
 
-# @app.route('/api/test', methods=['GET'])
-#@cross_origin()
-# def test():
-#     fe_respo = [
-#                     {'id':12, 'bet':2},
-#                     {'id':13, 'bet':4},
-#                     {'id':32, 'bet':6},
-#         ]
+@app.route('/api/test', methods=['GET'])
+@cross_origin()
+def test():
+    # get the rid Object for rid.id
+    resp= RID.query.filter_by(rid=Rid).first()
+    
+    fe_respo = [
+                    {'id':12, 'bet':2},
+                    {'id':13, 'bet':4},
+                    {'id':32, 'bet':6},
+        ]
+        
+    # this for loop iterate over response and classify it with market obj
 
-#     for i in fe_respo:
-#         if fe_respo[i]['id']==11:
-#             respo_i = Market_1.query.filter_by(rid=Rid)
+    for i in fe_respo:
+        if fe_respo[i]['id']==11:
+            last_bet = Market_1.query.order_by(Market_1.id.desc()).first()
+            bet_val = fe_respo[i]['bet']
+            check_obj = Market_1.query.filter_by(rid=resp.id).first()
+            if not check_obj: 
+                market_obj = Market_1(
+                            rid=resp.id,
+                            money_bet_1 = last_bet.price_1 * bet_val,
+                            bet_1 = bet_val,  
+                            )
+
+                db.session.add(market_obj)  
+                db.session.commit()
+                
+            else:
+                check_obj.money_bet_1 = last_bet.price_1 * bet_val
+                check_obj.bet_1 = bet_val
+                db.session.commit()
+
+        if fe_respo[i]['id']==12:
+            last_bet = Market_1.query.order_by(Market_1.id.desc()).first()
+            bet_val = fe_respo[i]['bet']
+            check_obj = Market_1.query.filter_by(rid=resp.id).first()
+            if not check_obj: 
+                market_obj = Market_1(
+                            rid=resp.id,
+                            money_bet_2 = last_bet.price_2 * bet_val,
+                            bet_2 = bet_val,  
+                            )
+
+                db.session.add(market_obj)  
+                db.session.commit()
+                
+            else:
+                check_obj.money_bet_2 = last_bet.price_2 * bet_val
+                check_obj.bet_2 = bet_val
+                db.session.commit()
+
+        if fe_respo[i]['id']==13:
+            last_bet = Market_1.query.order_by(Market_1.id.desc()).first()
+            bet_val = fe_respo[i]['bet']
+            check_obj = Market_1.query.filter_by(rid=resp.id).first()
+            if not check_obj: 
+                market_obj = Market_1(
+                            rid=resp.id,
+                            money_bet_3 = last_bet.price_3 * bet_val,
+                            bet_3 = bet_val,  
+                            )
+
+                db.session.add(market_obj)  
+                db.session.commit()
+                
+            else:
+                check_obj.money_bet_3 = last_bet.price_3 * bet_val
+                check_obj.bet_3 = bet_val
+                db.session.commit()
+
+        if fe_respo[i]['id']==14:
+            last_bet = Market_1.query.order_by(Market_1.id.desc()).first()
+            bet_val = fe_respo[i]['bet']
+            check_obj = Market_1.query.filter_by(rid=resp.id).first()
+            if not check_obj: 
+                market_obj = Market_1(
+                            rid=resp.id,
+                            money_bet_4 = last_bet.price_4 * bet_val,
+                            bet_4 = bet_val,  
+                            )
+
+                db.session.add(market_obj)  
+                db.session.commit()
+                
+            else:
+                check_obj.money_bet_4 = last_bet.price_4 * bet_val
+                check_obj.bet_4 = bet_val
+                db.session.commit()
 
 
 
