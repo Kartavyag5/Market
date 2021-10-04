@@ -2,8 +2,11 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from datetime import MAXYEAR, datetime
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
 
 
@@ -105,6 +108,7 @@ db.create_all()
 
 #------------Root API------------------
 @app.route('/api')
+@cross_origin()
 def main():
     return 'Root of Market API'
 
@@ -112,6 +116,7 @@ def main():
 #-------------Start Survey API-------------------------
 
 @app.route('/api/start_survey', methods=['POST'])
+@cross_origin()
 def start_survey():
     # when you give rid in post request, every time new rid obj created with datetime.now()
     # you have to give unique rid in request.
@@ -199,12 +204,9 @@ def start_survey():
 
 #------------End survey API--------------------
 
-@app.route('/api/end_survey', methods=['GET'])
+@app.route('/api/end_survey', methods=['GET','POST'])
+@cross_origin()
 def end_survey():
-    if request.method == 'POST':
-        time_ended = datetime.now()
-
-
     resp= RID.query.filter_by(rid=Rid).first()
 
     if resp:
@@ -222,9 +224,11 @@ def end_survey():
 #----------prices API-------------------
 
 @app.route('/api/prices')
+@cross_origin()
 def prices():
     
     # this response is for the testing purpose
+    
 
     # market = 1
     # option = 2
@@ -326,6 +330,22 @@ def prices():
 
            
     return {'market1': market1, 'market2': market2, 'market3': market3}
+
+
+
+# @app.route('/api/test', methods=['GET'])
+#@cross_origin()
+# def test():
+#     fe_respo = [
+#                     {'id':12, 'bet':2},
+#                     {'id':13, 'bet':4},
+#                     {'id':32, 'bet':6},
+#         ]
+
+#     for i in fe_respo:
+#         if fe_respo[i]['id']==11:
+#             respo_i = Market_1.query.filter_by(rid=Rid)
+
 
 
 #-----------run flask app------------------------
