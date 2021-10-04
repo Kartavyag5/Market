@@ -201,7 +201,7 @@ def start_survey():
 
 @app.route('/api/end_survey', methods=['GET'])
 def end_survey():
-    if request.method == 'GET':
+    if request.method == 'POST':
         time_ended = datetime.now()
 
 
