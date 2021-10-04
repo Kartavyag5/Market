@@ -138,41 +138,49 @@ def start_survey():
 
     
     market1.append({
-            'money_bet_1':0,
-            'money_bet_2':0,
-            'money_bet_3':0,
-            'money_bet_4':0,
-            'price_1': m1.price_1,
-            'price_2': m1.price_2,
-            'price_3': m1.price_3,
-            'price_4': m1.price_4,
-            'bet_1':0,
-            'bet_2':0,
-            'bet_3':0,
-            'bet_4':0,
+            'id':1,
+            'option1':{
+                        'id':11,
+                        'money_bet_1':0,
+                        'price_1': m1.price_1,
+                        'bet_1':0,
+                    },
+
+            'option2':{
+                        'id':12,
+                        'money_bet_2':0,
+                        'price_2': m1.price_2,
+                        'bet_2':0,
+                    },
+
+            'option3':{
+                        'id':13,
+                        'money_bet_3':0,
+                        'price_3': m1.price_3,
+                        'bet_3':0,
+                    },
+                    
+            'option4':{
+                        'id':14,
+                        'money_bet_4':0,
+                        'price_4': m1.price_4,
+                        'bet_4':0,
+                    },
         })
     
     
     market2.append({
-            'money_bet_1':0,
-            'money_bet_2':0,
-            'money_bet_3':0,
-            'price_1': m2.price_1,
-            'price_2': m2.price_2,
-            'price_3': m2.price_3,
-            'bet_1': 0,
-            'bet_2': 0,
-            'bet_3': 0,
+            'id':2,
+            'option1':{'id':21,'money_bet_1':0,'price_1': m2.price_1,'bet_1':0,},
+            'option2':{'id':22,'money_bet_2':0,'price_2': m2.price_2,'bet_2':0,},
+            'option3':{'id':23,'money_bet_3':0,'price_3': m2.price_3,'bet_3':0,},
         })
     
     
     market3.append({
-            'money_bet_1':0,
-            'money_bet_2':0,
-            'price_1': m3.price_1,
-            'price_2': m3.price_2,
-            'bet_1': 0,
-            'bet_2': 0,
+            'id':3,
+            'option1':{'id':31,'money_bet_1':0,'price_1': m3.price_1,'bet_1':0,},
+            'option2':{'id':32,'money_bet_2':0,'price_2': m3.price_2,'bet_2':0,},
         })
 
     # this query will return the last created rid object
@@ -288,52 +296,34 @@ def prices():
 
     for i in m1:
         market1.append({
+            'id':1,
             'rid': i.rid,
-            'money_bet_1': i.money_bet_1,
-            'money_bet_2': i.money_bet_2,
-            'money_bet_3': i.money_bet_3,
-            'money_bet_4': i.money_bet_4,
-            
-            'price_1': i.price_1,
-            'price_2': i.price_2,
-            'price_3': i.price_3,
-            'price_4': i.price_4,
-            
-            'bet_1': i.bet_1,
-            'bet_2': i.bet_2,
-            'bet_3': i.bet_3,
-            'bet_4': i.bet_4,
+            'option1':{'id':11,'money_bet_1': i.money_bet_1,'price_1': i.price_1,'bet_1': i.bet_1,},
+            'option2':{'id':12,'money_bet_2': i.money_bet_2,'price_2': i.price_2,'bet_2': i.bet_2,},
+            'option3':{'id':13,'money_bet_3': i.money_bet_3,'price_3': i.price_3,'bet_3': i.bet_3,},
+            'option4':{'id':14,'money_bet_4': i.money_bet_4,'price_4': i.price_4,'bet_4': i.bet_4,},
         })
     
     for j in m2:
+
         market2.append({
+            'id':2,
             'rid': j.rid,
-            'money_bet_1': j.money_bet_1,
-            'money_bet_2': j.money_bet_2,
-            'money_bet_3': j.money_bet_3,
-            
-            'price_1': j.price_1,
-            'price_2': j.price_2,
-            'price_3': j.price_3,
-            
-            'bet_1': j.bet_1,
-            'bet_2': j.bet_2,
-            'bet_3': j.bet_3,
+            'option1':{'id':21,'money_bet_1': j.money_bet_1,'price_1': j.price_1,'bet_1': j.bet_1,},
+            'option2':{'id':22,'money_bet_2': j.money_bet_2,'price_2': j.price_2,'bet_2': j.bet_2,},
+            'option3':{'id':23,'money_bet_3': j.money_bet_3,'price_3': j.price_3,'bet_3': j.bet_3,},
         })
-    
+
+        
     for k in m3:
+
         market3.append({
+            'id':3,
             'rid': k.rid,
-            'money_bet_1': k.money_bet_1,
-            'money_bet_2': k.money_bet_2,
-            
-            'price_1': k.price_1,
-            'price_2': k.price_2,
-            
-            'bet_1': k.bet_1,
-            'bet_2': k.bet_2,
-            
+            'option1':{'id':31,'money_bet_1': k.money_bet_1,'price_1': k.price_1,'bet_1': k.bet_1,},
+            'option2':{'id':32,'money_bet_2': k.money_bet_2,'price_2': k.price_2,'bet_2': k.bet_2,},
         })
+
            
     return {'market1': market1, 'market2': market2, 'market3': market3}
 
