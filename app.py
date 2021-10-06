@@ -108,9 +108,51 @@ db.create_all()
 #this is data of sum of market all money
 
 #------------Root API------------------
-@app.route('/api')
+@app.route('/api/do_not_call')
 @cross_origin()
 def main():
+
+    market1 = Market_1(
+                price_1=0.25,
+                price_2=0.25,
+                price_3=0.25,
+                price_4=0.25,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                money_bet_4=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+                bet_4=0,
+    )
+
+    market2 = Market_2(
+                price_1=0.33,
+                price_2=0.33,
+                price_3=0.33,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+    )
+
+    market3 = Market_3(
+                price_1=0.5,
+                price_2=0.5,
+                money_bet_1=10,
+                money_bet_2=10,
+                bet_1=0,
+                bet_2=0,
+    )
+
+    db.session.add(market1)  
+    db.session.add(market2)  
+    db.session.add(market3)  
+    db.session.commit()
+
     return 'Root of Market API'
 
 
@@ -213,7 +255,6 @@ def end_survey():
 
     if request.method=='POST':
         data = request.get_json()
-        print(data)
 
     #get the rid Object for rid.id
     resp= RID.query.filter_by(rid=Rid).first()
