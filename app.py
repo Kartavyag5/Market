@@ -406,7 +406,7 @@ def end_survey():
 
 
 
-    # this is for get all unchecked options as 0 in db.
+    # make all unselected options as 0 in db.
     market1_rid_obj = Market_1.query.filter_by(rid=resp.id).first()
     market2_rid_obj = Market_2.query.filter_by(rid=resp.id).first()
     market3_rid_obj = Market_3.query.filter_by(rid=resp.id).first()
@@ -483,7 +483,7 @@ def prices():
     #---prices calculation after submit-------
 
 
-    #------------------ all money bet sums for market_1------------------------------
+ #------------------ all money bet sums for market_1------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_1.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_1.money_bet_2)).scalar()
@@ -505,7 +505,7 @@ def prices():
     user_bet.price_4 = price4
 
 
-    #----------------------all money bet sums for market_2--------------------------------
+ #----------------------all money bet sums for market_2--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_2.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_2.money_bet_2)).scalar()
@@ -524,7 +524,7 @@ def prices():
     user_bet.price_3 = price3
 
 
-    # -----------------all money bet sums for market_3-------------------------------
+ # -----------------all money bet sums for market_3-------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_3.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_3.money_bet_2)).scalar()
@@ -533,8 +533,8 @@ def prices():
     sum_Market3 = sum_money_bet_1 + sum_money_bet_2
 
     #this is the updated prices for new user
-    price1 = sum_money_bet_1/sum_Market1
-    price2 = sum_money_bet_2/sum_Market1
+    price1 = sum_money_bet_1/sum_Market3
+    price2 = sum_money_bet_2/sum_Market3
     
     user_bet = Market_3.query.order_by(Market_3.id.desc()).first()
     user_bet.price_1 = price1
@@ -606,10 +606,8 @@ def prices():
 #     }
 # }
 
-
-        
-
 #-----------run flask app------------------------
+
 if __name__ == '__main__':
     db.init_app(app)
     app.run(debug=True)
