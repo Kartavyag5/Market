@@ -46,8 +46,8 @@ class RID(db.Model):
 # all market names:
     # 1. Kodiak Cakes Concept Test
     # 2. Jeopardy!
-    # 3. No Time to Die
-    # 4.
+    # 3. BYU Football
+    # 4. No Time To Die
     # 5.
     # 6.
     # 7.
@@ -88,14 +88,17 @@ class Market_2(db.Model):
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
+    money_bet_4 = db.Column(db.Float())
     
     price_1 = db.Column(db.Float())
     price_2 = db.Column(db.Float())
     price_3 = db.Column(db.Float())
+    price_4 = db.Column(db.Float())
     
     bet_1 = db.Column(db.Integer())
     bet_2 = db.Column(db.Integer())
     bet_3 = db.Column(db.Integer())
+    bet_4 = db.Column(db.Integer())
     
     def __repr__(self):
         return f"{self.rid.rid}"
@@ -108,12 +111,18 @@ class Market_3(db.Model):
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
+    money_bet_3 = db.Column(db.Float())
+    money_bet_4 = db.Column(db.Float())
     
     price_1 = db.Column(db.Float())
     price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    price_4 = db.Column(db.Float())
     
     bet_1 = db.Column(db.Integer())
     bet_2 = db.Column(db.Integer())
+    bet_3 = db.Column(db.Integer())
+    bet_4 = db.Column(db.Integer())
 
     def __repr__(self):
         return f"{self.rid.rid}"
@@ -125,15 +134,12 @@ class Market_4(db.Model):
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
-    money_bet_3 = db.Column(db.Float())
     
     price_1 = db.Column(db.Float())
     price_2 = db.Column(db.Float())
-    price_3 = db.Column(db.Float())
     
     bet_1 = db.Column(db.Integer())
     bet_2 = db.Column(db.Integer())
-    bet_3 = db.Column(db.Integer())
 
     def __repr__(self):
         return f"{self.rid.rid}"
@@ -283,36 +289,42 @@ def main():
     )
 
     market2 = Market_2(
-                price_1=0.33,
-                price_2=0.33,
-                price_3=0.33,
+                price_1=0.25,
+                price_2=0.25,
+                price_3=0.25,
+                price_4=0.25,
                 money_bet_1=10,
                 money_bet_2=10,
                 money_bet_3=10,
+                money_bet_4=10,
                 bet_1=0,
                 bet_2=0,
                 bet_3=0,
+                bet_4=0,
     )
 
     market3 = Market_3(
+                price_1=0.25,
+                price_2=0.25,
+                price_3=0.25,
+                price_4=0.25,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                money_bet_4=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+                bet_4=0,
+    )
+    
+    market4 = Market_4(
                 price_1=0.5,
                 price_2=0.5,
                 money_bet_1=10,
                 money_bet_2=10,
                 bet_1=0,
                 bet_2=0,
-    )
-    
-    market4 = Market_4(
-                price_1=0.33,
-                price_2=0.33,
-                price_3=0.33,
-                money_bet_1=10,
-                money_bet_2=10,
-                money_bet_3=10,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
     )
 
     market5 = Market_5(
@@ -457,19 +469,21 @@ def start_survey():
             'option1':{'id':21, 'money_bet_1':0, 'price_1':m2.price_1, 'bet_1':0,},
             'option2':{'id':22, 'money_bet_2':0, 'price_2':m2.price_2, 'bet_2':0,},
             'option3':{'id':23, 'money_bet_3':0, 'price_3':m2.price_3, 'bet_3':0,},
+            'option4':{'id':24, 'money_bet_4':0, 'price_4':m2.price_4, 'bet_4':0,},
         })
     
     market3.append({
             'id':3,
             'option1':{'id':31, 'money_bet_1':0, 'price_1':m3.price_1, 'bet_1':0,},
             'option2':{'id':32, 'money_bet_2':0, 'price_2':m3.price_2, 'bet_2':0,},
+            'option3':{'id':33, 'money_bet_3':0, 'price_3':m3.price_3, 'bet_3':0,},
+            'option4':{'id':34, 'money_bet_4':0, 'price_4':m3.price_4, 'bet_4':0,},
         })
     
     market4.append({
             'id':4,
             'option1':{'id':41, 'money_bet_1':0, 'price_1':m4.price_1, 'bet_1':0,},
             'option2':{'id':42, 'money_bet_2':0, 'price_2':m4.price_2, 'bet_2':0,},
-            'option3':{'id':43, 'money_bet_3':0, 'price_3':m4.price_3, 'bet_3':0,},
         })
 
     market5.append({
@@ -530,10 +544,9 @@ def start_survey():
             'market8': market8,
             'market9': market9,
             'market10': market10,
-            'message':'new rid created'
             })
             
-    return {'body': body}
+    return {'body': body, 'message':'new rid created',}
 
 
 #------------End survey API--------------------
@@ -692,6 +705,22 @@ def end_survey():
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
+            if i['id']==24:
+                bet_val = i['bet']
+                check_obj = Market_2.query.filter_by(rid=resp.id).first()
+                if not check_obj: 
+                    market_obj = Market_2(
+                                rid=resp.id,
+                                money_bet_4 = market2_last_bet.price_4 * bet_val,
+                                bet_4 = bet_val,  
+                                )
+                    db.session.add(market_obj)  
+                    db.session.commit()                  
+                else:
+                    check_obj.money_bet_4 = market2_last_bet.price_4 * bet_val
+                    check_obj.bet_4 = bet_val
+                    db.session.commit()
+
             # -----------------Market_3------------------
             if i['id']==31:
                 bet_val = i['bet']
@@ -723,6 +752,38 @@ def end_survey():
                 else:
                     check_obj.money_bet_2 = market3_last_bet.price_2 * bet_val
                     check_obj.bet_2 = bet_val
+                    db.session.commit()
+
+            if i['id']==33:
+                bet_val = i['bet']
+                check_obj = Market_3.query.filter_by(rid=resp.id).first()
+                if not check_obj: 
+                    market_obj = Market_3(
+                                rid=resp.id,
+                                money_bet_3 = market3_last_bet.price_3 * bet_val,
+                                bet_3 = bet_val,  
+                                )
+                    db.session.add(market_obj)  
+                    db.session.commit()     
+                else:
+                    check_obj.money_bet_3 = market3_last_bet.price_3 * bet_val
+                    check_obj.bet_3 = bet_val
+                    db.session.commit()
+
+            if i['id']==34:
+                bet_val = i['bet']
+                check_obj = Market_3.query.filter_by(rid=resp.id).first()
+                if not check_obj: 
+                    market_obj = Market_3(
+                                rid=resp.id,
+                                money_bet_4 = market3_last_bet.price_4 * bet_val,
+                                bet_4 = bet_val,  
+                                )
+                    db.session.add(market_obj)  
+                    db.session.commit()     
+                else:
+                    check_obj.money_bet_4 = market3_last_bet.price_4 * bet_val
+                    check_obj.bet_4 = bet_val
                     db.session.commit()
                     
             # -----------------Market_4-------------------
@@ -758,21 +819,6 @@ def end_survey():
                     check_obj.bet_2 = bet_val
                     db.session.commit()
 
-            if i['id']==43:
-                bet_val = i['bet']
-                check_obj = Market_4.query.filter_by(rid=resp.id).first()
-                if not check_obj: 
-                    market_obj = Market_4(
-                                rid=resp.id,
-                                money_bet_3 = market4_last_bet.price_3 * bet_val,
-                                bet_3 = bet_val,  
-                                )
-                    db.session.add(market_obj)  
-                    db.session.commit()    
-                else:
-                    check_obj.money_bet_3 = market4_last_bet.price_3 * bet_val
-                    check_obj.bet_3 = bet_val
-                    db.session.commit()
 
             # -----------------Market_5------------------
             if i['id']==51:
@@ -1128,12 +1174,15 @@ def end_survey():
                 price_1=0,
                 price_2=0,
                 price_3=0,
+                price_4=0,
                 money_bet_1=0,
                 money_bet_2=0,
                 money_bet_3=0,
+                money_bet_4=0,
                 bet_1=0,
                 bet_2=0,
                 bet_3=0,
+                bet_4=0,
         )
         db.session.add(rid_market2)
 
@@ -1152,6 +1201,11 @@ def end_survey():
             market2_rid_obj.bet_3 = 0
             market2_rid_obj.money_bet_3 = 0
             market2_rid_obj.price_3 = 0
+
+        if not market2_rid_obj.bet_4:
+            market2_rid_obj.bet_4 = 0
+            market2_rid_obj.money_bet_4 = 0
+            market2_rid_obj.price_4 = 0
     
     # Market_3
 
@@ -1160,10 +1214,16 @@ def end_survey():
                 rid=resp.id,
                 price_1=0,
                 price_2=0,
+                price_3=0,
+                price_4=0,
                 money_bet_1=0,
                 money_bet_2=0,
+                money_bet_3=0,
+                money_bet_4=0,
                 bet_1=0,
                 bet_2=0,
+                bet_3=0,
+                bet_4=0,
         )
         db.session.add(rid_market3)
 
@@ -1177,6 +1237,16 @@ def end_survey():
             market3_rid_obj.bet_2 = 0
             market3_rid_obj.money_bet_2 = 0
             market3_rid_obj.price_2 = 0
+
+        if not market3_rid_obj.bet_3:
+            market3_rid_obj.bet_3 = 0
+            market3_rid_obj.money_bet_3 = 0
+            market3_rid_obj.price_3 = 0
+
+        if not market3_rid_obj.bet_4:
+            market3_rid_obj.bet_4 = 0
+            market3_rid_obj.money_bet_4 = 0
+            market3_rid_obj.price_4 = 0
             
     # Market_4
 
@@ -1185,13 +1255,10 @@ def end_survey():
                 rid=resp.id,
                 price_1=0,
                 price_2=0,
-                price_3=0,
                 money_bet_1=0,
                 money_bet_2=0,
-                money_bet_3=0,
                 bet_1=0,
                 bet_2=0,
-                bet_3=0,
         )
         db.session.add(rid_market4)
 
@@ -1205,11 +1272,6 @@ def end_survey():
             market4_rid_obj.bet_2 = 0
             market4_rid_obj.money_bet_2 = 0
             market4_rid_obj.price_2 = 0
-        
-        if not market4_rid_obj.bet_3:
-            market4_rid_obj.bet_3 = 0
-            market4_rid_obj.money_bet_3 = 0
-            market4_rid_obj.price_3 = 0
 
     # Market_5
 
@@ -1458,52 +1520,58 @@ def prices():
     sum_money_bet_1 = db.session.query(func.sum(Market_2.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_2.money_bet_2)).scalar()
     sum_money_bet_3 = db.session.query(func.sum(Market_2.money_bet_3)).scalar()
+    sum_money_bet_4 = db.session.query(func.sum(Market_2.money_bet_4)).scalar()
     
-    sum_Market2 = sum_money_bet_1 + sum_money_bet_2 + sum_money_bet_3
+    sum_Market2 = sum_money_bet_1 + sum_money_bet_2 + sum_money_bet_3 + sum_money_bet_4
 
     # this is the updated prices for new user
     price1 = sum_money_bet_1/sum_Market2
     price2 = sum_money_bet_2/sum_Market2
     price3 = sum_money_bet_3/sum_Market2
+    price4 = sum_money_bet_4/sum_Market2
 
     user_bet = Market_2.query.order_by(Market_2.id.desc()).first()
     user_bet.price_1 = price1
     user_bet.price_2 = price2
     user_bet.price_3 = price3
+    user_bet.price_4 = price4
 
 #----------------------all money bet sums for market_3--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_3.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_3.money_bet_2)).scalar()
+    sum_money_bet_3 = db.session.query(func.sum(Market_3.money_bet_3)).scalar()
+    sum_money_bet_4 = db.session.query(func.sum(Market_3.money_bet_4)).scalar()
     
     
-    sum_Market3 = sum_money_bet_1 + sum_money_bet_2
+    sum_Market3 = sum_money_bet_1 + sum_money_bet_2 + sum_money_bet_3 + sum_money_bet_4
 
     # this is the updated prices for new user
     price1 = sum_money_bet_1/sum_Market3
     price2 = sum_money_bet_2/sum_Market3
+    price3 = sum_money_bet_3/sum_Market3
+    price4 = sum_money_bet_4/sum_Market3
     
     user_bet = Market_3.query.order_by(Market_3.id.desc()).first()
     user_bet.price_1 = price1
     user_bet.price_2 = price2
+    user_bet.price_3 = price3
+    user_bet.price_4 = price4
 
 #----------------------all money bet sums for market_4--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_4.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_4.money_bet_2)).scalar()
-    sum_money_bet_3 = db.session.query(func.sum(Market_4.money_bet_3)).scalar()
     
-    sum_Market4 = sum_money_bet_1 + sum_money_bet_2 + sum_money_bet_3
+    sum_Market4 = sum_money_bet_1 + sum_money_bet_2
 
     # this is the updated prices for new user
     price1 = sum_money_bet_1/sum_Market4
     price2 = sum_money_bet_2/sum_Market4
-    price3 = sum_money_bet_3/sum_Market4
 
     user_bet = Market_4.query.order_by(Market_4.id.desc()).first()
     user_bet.price_1 = price1
     user_bet.price_2 = price2
-    user_bet.price_3 = price3
 
 #----------------------all money bet sums for market_5--------------------------------
 
@@ -1654,6 +1722,7 @@ def prices():
             'option1':{'id':21, 'money_bet_1':j.money_bet_1, 'price_1':j.price_1, 'bet_1':j.bet_1,},
             'option2':{'id':22, 'money_bet_2':j.money_bet_2, 'price_2':j.price_2, 'bet_2':j.bet_2,},
             'option3':{'id':23, 'money_bet_3':j.money_bet_3, 'price_3':j.price_3, 'bet_3':j.bet_3,},
+            'option4':{'id':24, 'money_bet_4':j.money_bet_4, 'price_4':j.price_4, 'bet_4':j.bet_4,},
         })
 
     for k in m3:
@@ -1662,6 +1731,8 @@ def prices():
             'rid': k.rid,
             'option1':{'id':31, 'money_bet_1':k.money_bet_1, 'price_1':k.price_1, 'bet_1':k.bet_1,},
             'option2':{'id':32, 'money_bet_2':k.money_bet_2, 'price_2':k.price_2, 'bet_2':k.bet_2,},
+            'option3':{'id':33, 'money_bet_3':k.money_bet_3, 'price_3':k.price_3, 'bet_3':k.bet_3,},
+            'option4':{'id':34, 'money_bet_4':k.money_bet_4, 'price_4':k.price_4, 'bet_4':k.bet_4,},
         })
         
     for l in m4:
@@ -1670,7 +1741,6 @@ def prices():
             'rid': l.rid,
             'option1':{'id':41, 'money_bet_1':l.money_bet_1, 'price_1':l.price_1, 'bet_1':l.bet_1,},
             'option2':{'id':42, 'money_bet_2':l.money_bet_2, 'price_2':l.price_2, 'bet_2':l.bet_2,},
-            'option3':{'id':43, 'money_bet_3':l.money_bet_3, 'price_3':l.price_3, 'bet_3':l.bet_3,},
         })
 
     for m in m5:
