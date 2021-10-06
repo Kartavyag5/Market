@@ -43,7 +43,21 @@ class RID(db.Model):
         return f"{self.time_started}:{self.time_submitted}"
 
 
-# Market1 Model
+# all market names:
+    # 1. Kodiak Cakes Concept Test
+    # 2. Jeopardy!
+    # 3. No Time to Die
+    # 4.
+    # 5.
+    # 6.
+    # 7.
+    # 8.
+    # 9.
+    # 10.
+
+
+#----------Market1 : Kodiak Cakes Concept Test-------------------------
+
 class Market_1(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
@@ -66,7 +80,8 @@ class Market_1(db.Model):
         return f"{self.rid.rid}"
 
 
-# Market2 Model
+#----------Market2 : Jeopardy!-------------------------
+
 class Market_2(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
@@ -86,7 +101,8 @@ class Market_2(db.Model):
         return f"{self.rid.rid}"
 
 
-# Market3 Model
+#----------Market3 : No Time To Die -------------------------
+
 class Market_3(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
@@ -287,100 +303,100 @@ def main():
                 bet_2=0,
     )
     
-#     market4 = Market_4(
-#                 price_1=0.33,
-#                 price_2=0.33,
-#                 price_3=0.33,
-#                 money_bet_1=10,
-#                 money_bet_2=10,
-#                 money_bet_3=10,
-#                 bet_1=0,
-#                 bet_2=0,
-#                 bet_3=0,
-#     )
+    market4 = Market_4(
+                price_1=0.33,
+                price_2=0.33,
+                price_3=0.33,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+    )
 
-#     market5 = Market_5(
-#                 price_1=0.33,
-#                 price_2=0.33,
-#                 price_3=0.33,
-#                 money_bet_1=10,
-#                 money_bet_2=10,
-#                 money_bet_3=10,
-#                 bet_1=0,
-#                 bet_2=0,
-#                 bet_3=0,
-#     )
+    market5 = Market_5(
+                price_1=0.33,
+                price_2=0.33,
+                price_3=0.33,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+    )
 
-#     market6 = Market_6(
-#                 price_1=0.33,
-#                 price_2=0.33,
-#                 price_3=0.33,
-#                 money_bet_1=10,
-#                 money_bet_2=10,
-#                 money_bet_3=10,
-#                 bet_1=0,
-#                 bet_2=0,
-#                 bet_3=0,
-#     )
+    market6 = Market_6(
+                price_1=0.33,
+                price_2=0.33,
+                price_3=0.33,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+    )
 
-#     market7 = Market_7(
-#                 price_1=0.33,
-#                 price_2=0.33,
-#                 price_3=0.33,
-#                 money_bet_1=10,
-#                 money_bet_2=10,
-#                 money_bet_3=10,
-#                 bet_1=0,
-#                 bet_2=0,
-#                 bet_3=0,
-#     )
+    market7 = Market_7(
+                price_1=0.33,
+                price_2=0.33,
+                price_3=0.33,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+    )
 
-#     market8 = Market_8(
-#                 price_1=0.33,
-#                 price_2=0.33,
-#                 price_3=0.33,
-#                 money_bet_1=10,
-#                 money_bet_2=10,
-#                 money_bet_3=10,
-#                 bet_1=0,
-#                 bet_2=0,
-#                 bet_3=0,
-#     )
+    market8 = Market_8(
+                price_1=0.33,
+                price_2=0.33,
+                price_3=0.33,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+    )
 
-#     market9 = Market_9(
-#                 price_1=0.33,
-#                 price_2=0.33,
-#                 price_3=0.33,
-#                 money_bet_1=10,
-#                 money_bet_2=10,
-#                 money_bet_3=10,
-#                 bet_1=0,
-#                 bet_2=0,
-#                 bet_3=0,
-#     )
+    market9 = Market_9(
+                price_1=0.33,
+                price_2=0.33,
+                price_3=0.33,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+    )
 
-#     market10 = Market_10(
-#                 price_1=0.33,
-#                 price_2=0.33,
-#                 price_3=0.33,
-#                 money_bet_1=10,
-#                 money_bet_2=10,
-#                 money_bet_3=10,
-#                 bet_1=0,
-#                 bet_2=0,
-#                 bet_3=0,
-#     )
+    market10 = Market_10(
+                price_1=0.33,
+                price_2=0.33,
+                price_3=0.33,
+                money_bet_1=10,
+                money_bet_2=10,
+                money_bet_3=10,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+    )
 
     db.session.add(market1)  
     db.session.add(market2)  
     db.session.add(market3)
-    # db.session.add(market4)  
-    # db.session.add(market5)  
-    # db.session.add(market6)  
-    # db.session.add(market7)  
-    # db.session.add(market8)  
-    # db.session.add(market9)  
-    # db.session.add(market10)  
+    db.session.add(market4)  
+    db.session.add(market5)  
+    db.session.add(market6)  
+    db.session.add(market7)  
+    db.session.add(market8)  
+    db.session.add(market9)  
+    db.session.add(market10)  
     db.session.commit()
 
     return 'Root of Market API'
@@ -400,7 +416,7 @@ def start_survey():
         Rid_check = RID.query.all()
         for i in Rid_check:
             if i.rid == Rid:
-                return {'msg':'rid is already used'}
+                return {'message':'rid is already used'}
         
         RID_obj = RID(rid=Rid)
         db.session.add(RID_obj)  
@@ -410,13 +426,13 @@ def start_survey():
     m1 = db.session.query(Market_1).order_by(Market_1.id.desc()).first()
     m2 = db.session.query(Market_2).order_by(Market_2.id.desc()).first()
     m3 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
-    m4 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
-    m5 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
-    m6 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
-    m7 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
-    m8 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
-    m9 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
-    m10 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
+    m4 = db.session.query(Market_4).order_by(Market_4.id.desc()).first()
+    m5 = db.session.query(Market_5).order_by(Market_5.id.desc()).first()
+    m6 = db.session.query(Market_6).order_by(Market_6.id.desc()).first()
+    m7 = db.session.query(Market_7).order_by(Market_7.id.desc()).first()
+    m8 = db.session.query(Market_8).order_by(Market_8.id.desc()).first()
+    m9 = db.session.query(Market_9).order_by(Market_9.id.desc()).first()
+    m10 = db.session.query(Market_10).order_by(Market_10.id.desc()).first()
     market1 = []
     market2 = []
     market3 = []
@@ -1065,6 +1081,24 @@ def end_survey():
     market10_rid_obj = Market_10.query.filter_by(rid=resp.id).first()
 
     # Market_1
+    if not market1_rid_obj:
+        rid_market1 = Market_1(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                price_3=0,
+                price_4=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                money_bet_3=0,
+                money_bet_4=0,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+                bet_4=0,
+        )
+        db.session.add(rid_market1)  
+
     if market1_rid_obj:
         if not market1_rid_obj.bet_1:
             market1_rid_obj.bet_1 = 0
@@ -1087,6 +1121,22 @@ def end_survey():
             market1_rid_obj.price_4 = 0
 
     # Market_2
+
+    if not market2_rid_obj:
+        rid_market2 = Market_2(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                price_3=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                money_bet_3=0,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+        )
+        db.session.add(rid_market2)
+
     if market2_rid_obj:
         if not market2_rid_obj.bet_1:
             market2_rid_obj.bet_1 = 0
@@ -1104,6 +1154,19 @@ def end_survey():
             market2_rid_obj.price_3 = 0
     
     # Market_3
+
+    if not market3_rid_obj:
+        rid_market3 = Market_3(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                bet_1=0,
+                bet_2=0,
+        )
+        db.session.add(rid_market3)
+
     if market3_rid_obj:
         if not market3_rid_obj.bet_1:
             market3_rid_obj.bet_1 = 0
@@ -1116,6 +1179,22 @@ def end_survey():
             market3_rid_obj.price_2 = 0
             
     # Market_4
+
+    if not market4_rid_obj:
+        rid_market4 = Market_4(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                price_3=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                money_bet_3=0,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+        )
+        db.session.add(rid_market4)
+
     if market4_rid_obj:
         if not market4_rid_obj.bet_1:
             market4_rid_obj.bet_1 = 0
@@ -1133,6 +1212,22 @@ def end_survey():
             market4_rid_obj.price_3 = 0
 
     # Market_5
+
+    if not market5_rid_obj:
+        rid_market5 = Market_5(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                price_3=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                money_bet_3=0,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+        )
+        db.session.add(rid_market5)
+
     if market5_rid_obj:
         if not market5_rid_obj.bet_1:
             market5_rid_obj.bet_1 = 0
@@ -1150,6 +1245,22 @@ def end_survey():
             market5_rid_obj.price_3 = 0
 
     # Market_6
+
+    if not market6_rid_obj:
+        rid_market6 = Market_6(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                price_3=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                money_bet_3=0,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+        )
+        db.session.add(rid_market6)
+
     if market6_rid_obj:
         if not market6_rid_obj.bet_1:
             market6_rid_obj.bet_1 = 0
@@ -1167,6 +1278,22 @@ def end_survey():
             market6_rid_obj.price_3 = 0
 
     # Market_7
+
+    if not market7_rid_obj:
+        rid_market7 = Market_7(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                price_3=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                money_bet_3=0,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+        )
+        db.session.add(rid_market7)
+
     if market7_rid_obj:
         if not market7_rid_obj.bet_1:
             market7_rid_obj.bet_1 = 0
@@ -1184,6 +1311,22 @@ def end_survey():
             market7_rid_obj.price_3 = 0
 
     # Market_8
+
+    if not market8_rid_obj:
+        rid_market8 = Market_8(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                price_3=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                money_bet_3=0,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+        )
+        db.session.add(rid_market8)
+
     if market8_rid_obj:
         if not market8_rid_obj.bet_1:
             market8_rid_obj.bet_1 = 0
@@ -1201,6 +1344,22 @@ def end_survey():
             market8_rid_obj.price_3 = 0
 
     # Market_9
+
+    if not market9_rid_obj:
+        rid_market9 = Market_9(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                price_3=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                money_bet_3=0,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+        )
+        db.session.add(rid_market9)
+
     if market9_rid_obj:
         if not market9_rid_obj.bet_1:
             market9_rid_obj.bet_1 = 0
@@ -1218,6 +1377,22 @@ def end_survey():
             market9_rid_obj.price_3 = 0
 
     # Market_10
+
+    if not market10_rid_obj:
+        rid_market10 = Market_10(
+                rid=resp.id,
+                price_1=0,
+                price_2=0,
+                price_3=0,
+                money_bet_1=0,
+                money_bet_2=0,
+                money_bet_3=0,
+                bet_1=0,
+                bet_2=0,
+                bet_3=0,
+        )
+        db.session.add(rid_market10)
+
     if market10_rid_obj:
         if not market10_rid_obj.bet_1:
             market10_rid_obj.bet_1 = 0
