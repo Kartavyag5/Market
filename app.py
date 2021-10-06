@@ -374,13 +374,13 @@ def main():
     db.session.add(market1)  
     db.session.add(market2)  
     db.session.add(market3)
-    db.session.add(market4)  
-    db.session.add(market5)  
-    db.session.add(market6)  
-    db.session.add(market7)  
-    db.session.add(market8)  
-    db.session.add(market9)  
-    db.session.add(market10)  
+    # db.session.add(market4)  
+    # db.session.add(market5)  
+    # db.session.add(market6)  
+    # db.session.add(market7)  
+    # db.session.add(market8)  
+    # db.session.add(market9)  
+    # db.session.add(market10)  
     db.session.commit()
 
     return 'Root of Market API'
@@ -562,7 +562,7 @@ def end_survey():
 
         for i in option_list:
 
-            # --------------Market_1------------------
+            # -----------------Market_1------------------
             if i['id']==11:
                 bet_val = i['bet']
                 check_obj = Market_1.query.filter_by(rid=resp.id).first()
@@ -627,7 +627,7 @@ def end_survey():
                     check_obj.bet_4 = bet_val
                     db.session.commit()
 
-            # ---------------Market_2-------------------
+            # -----------------Market_2------------------
             if i['id']==21:
                 bet_val = i['bet']
                 check_obj = Market_2.query.filter_by(rid=resp.id).first()
@@ -676,7 +676,7 @@ def end_survey():
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # ------------Market_3---------------
+            # -----------------Market_3------------------
             if i['id']==31:
                 bet_val = i['bet']
                 check_obj = Market_3.query.filter_by(rid=resp.id).first()
@@ -709,7 +709,7 @@ def end_survey():
                     check_obj.bet_2 = bet_val
                     db.session.commit()
                     
-            # ------------Market_4------------------
+            # -----------------Market_4-------------------
             if i['id']==41:
                 bet_val = i['bet']
                 check_obj = Market_4.query.filter_by(rid=resp.id).first()
@@ -758,7 +758,7 @@ def end_survey():
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # -----------------Market_5-----------------
+            # -----------------Market_5------------------
             if i['id']==51:
                 bet_val = i['bet']
                 check_obj = Market_5.query.filter_by(rid=resp.id).first()
@@ -807,7 +807,7 @@ def end_survey():
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # ---------------Market_6-----------------
+            # -----------------Market_6------------------
             if i['id']==61:
                 bet_val = i['bet']
                 check_obj = Market_6.query.filter_by(rid=resp.id).first()
@@ -856,8 +856,7 @@ def end_survey():
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # ---------------Market_7-------------------
-            if i['id']==71:
+            # -----------------Market_7------------------
                 bet_val = i['bet']
                 check_obj = Market_7.query.filter_by(rid=resp.id).first()
                 if not check_obj: 
@@ -905,7 +904,7 @@ def end_survey():
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # --------------------Market_8-------------------
+            # -----------------Market_8------------------
             if i['id']==81:
                 bet_val = i['bet']
                 check_obj = Market_8.query.filter_by(rid=resp.id).first()
@@ -1003,7 +1002,7 @@ def end_survey():
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # ------------------Market_10---------------------
+            # -----------------Market_10------------------
             if i['id']==101:
                 bet_val = i['bet']
                 check_obj = Market_10.query.filter_by(rid=resp.id).first()
@@ -1258,7 +1257,7 @@ def prices():
 
     #---prices calculation after submit-------
 
- #------------------ all money bet sums for market_1------------------------------
+#----------------------all money bet sums for market_1--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_1.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_1.money_bet_2)).scalar()
@@ -1279,8 +1278,7 @@ def prices():
     user_bet.price_3 = price3
     user_bet.price_4 = price4
 
-
- #----------------------all money bet sums for market_2--------------------------------
+#----------------------all money bet sums for market_2--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_2.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_2.money_bet_2)).scalar()
@@ -1298,8 +1296,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-
- # -----------------all money bet sums for market_3-------------------------------
+#----------------------all money bet sums for market_3--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_3.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_3.money_bet_2)).scalar()
@@ -1314,8 +1311,8 @@ def prices():
     user_bet = Market_3.query.order_by(Market_3.id.desc()).first()
     user_bet.price_1 = price1
     user_bet.price_2 = price2
-    
- #----------------------all money bet sums for market_4--------------------------------
+
+#----------------------all money bet sums for market_4--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_4.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_4.money_bet_2)).scalar()
@@ -1333,7 +1330,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-    #----------------------all money bet sums for market_5--------------------------------
+#----------------------all money bet sums for market_5--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_5.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_5.money_bet_2)).scalar()
@@ -1351,7 +1348,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-    #----------------------all money bet sums for market_6--------------------------------
+#----------------------all money bet sums for market_6--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_6.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_6.money_bet_2)).scalar()
@@ -1369,7 +1366,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-    #----------------------all money bet sums for market_7--------------------------------
+#----------------------all money bet sums for market_7--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_7.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_7.money_bet_2)).scalar()
@@ -1387,7 +1384,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-    #----------------------all money bet sums for market_8--------------------------------
+#----------------------all money bet sums for market_8--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_8.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_8.money_bet_2)).scalar()
@@ -1405,7 +1402,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-    #----------------------all money bet sums for market_9--------------------------------
+#----------------------all money bet sums for market_9--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_9.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_9.money_bet_2)).scalar()
@@ -1423,7 +1420,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-    #----------------------all money bet sums for market_10--------------------------------
+#----------------------all money bet sums for market_10--------------------------------
 
     sum_money_bet_1 = db.session.query(func.sum(Market_10.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_10.money_bet_2)).scalar()
