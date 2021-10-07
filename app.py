@@ -1063,6 +1063,7 @@ def end_survey():
                     db.session.commit()
 
             # -----------------Market_7------------------
+            if i['id']==71:   
                 bet_val = i['bet']
                 check_obj = Market_7.query.filter_by(rid=resp.id).first()
                 if not check_obj: 
@@ -1311,7 +1312,6 @@ def end_survey():
             market1_rid_obj.price_4 = 0
 
     # Market_2
-
     if not market2_rid_obj:
         rid_market2 = Market_2(
                 rid=resp.id,
@@ -1352,7 +1352,6 @@ def end_survey():
             market2_rid_obj.price_4 = 0
     
     # Market_3
-
     if not market3_rid_obj:
         rid_market3 = Market_3(
                 rid=resp.id,
@@ -1393,7 +1392,6 @@ def end_survey():
             market3_rid_obj.price_4 = 0
             
     # Market_4
-
     if not market4_rid_obj:
         rid_market4 = Market_4(
                 rid=resp.id,
@@ -1418,7 +1416,6 @@ def end_survey():
             market4_rid_obj.price_2 = 0
 
     # Market_5
-
     if not market5_rid_obj:
         rid_market5 = Market_5(
                 rid=resp.id,
@@ -1451,7 +1448,6 @@ def end_survey():
             market5_rid_obj.price_3 = 0
 
     # Market_6
-
     if not market6_rid_obj:
         rid_market6 = Market_6(
                 rid=resp.id,
@@ -1484,7 +1480,6 @@ def end_survey():
             market6_rid_obj.price_3 = 0
 
     # Market_7
-
     if not market7_rid_obj:
         rid_market7 = Market_7(
                 rid=resp.id,
@@ -1517,7 +1512,6 @@ def end_survey():
             market7_rid_obj.price_3 = 0
 
     # Market_8
-
     if not market8_rid_obj:
         rid_market8 = Market_8(
                 rid=resp.id,
@@ -1550,7 +1544,6 @@ def end_survey():
             market8_rid_obj.price_3 = 0
 
     # Market_9
-
     if not market9_rid_obj:
         rid_market9 = Market_9(
                 rid=resp.id,
@@ -1583,7 +1576,6 @@ def end_survey():
             market9_rid_obj.price_3 = 0
 
     # Market_10
-
     if not market10_rid_obj:
         rid_market10 = Market_10(
                 rid=resp.id,
@@ -1686,7 +1678,6 @@ def prices():
     sum_money_bet_2 = db.session.query(func.sum(Market_3.money_bet_2)).scalar()
     sum_money_bet_3 = db.session.query(func.sum(Market_3.money_bet_3)).scalar()
     sum_money_bet_4 = db.session.query(func.sum(Market_3.money_bet_4)).scalar()
-    
     
     sum_Market3 = sum_money_bet_1 + sum_money_bet_2 + sum_money_bet_3 + sum_money_bet_4
 
