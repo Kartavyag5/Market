@@ -18,8 +18,8 @@ app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
 # host = "localhost"
 # database = "market"
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
-#app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Kart$1798@localhost/market"
+#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Kart$1798@localhost/market"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 # this variable, db, will be used for all SQLAlchemy commands
@@ -104,7 +104,7 @@ class Market_2(db.Model):
         return f"{self.rid.rid}"
 
 
-#----------Market3 : No Time To Die -------------------------
+#----------Market3 : BYU Football -------------------------
 
 class Market_3(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -128,7 +128,8 @@ class Market_3(db.Model):
         return f"{self.rid.rid}"
 
     
-# Market4 Model
+#----------Market4 : No Time To Die -------------------------
+
 class Market_4(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
