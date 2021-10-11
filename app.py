@@ -1,25 +1,19 @@
-from typing import NamedTuple
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
-from datetime import MAXYEAR, datetime
+from datetime import datetime
 from flask_cors import CORS, cross_origin
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-app.config['SECRET_KEY'] = "9513b0b66a8546799bb12ddb3fb80755"
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-
-#give the values of the following variables for connect MySQL db
-
-# username = "root"
-# password = "Kart$1798"
-# host = "localhost"
-# database = "market"
-
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
-#app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Kart$1798@localhost/market"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 # this variable, db, will be used for all SQLAlchemy commands

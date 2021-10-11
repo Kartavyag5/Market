@@ -9,6 +9,7 @@ flask-sqlalchemy = "*"
 pymysql = "*"
 gunicorn = "*"
 flask-cors = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
