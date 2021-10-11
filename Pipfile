@@ -10,6 +10,7 @@ pymysql = "*"
 gunicorn = "*"
 flask-cors = "*"
 python-dotenv = "*"
+autopep8 = "*"
 
 [dev-packages]
 
