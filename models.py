@@ -1,5 +1,10 @@
-from app import db
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+
+app  = Flask(__name__)
+
+db = SQLAlchemy(app)
 
 """ RID Model """
 class RID(db.Model):
