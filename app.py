@@ -311,7 +311,7 @@ def end_survey():
     if request.method=='POST':
         data = request.get_json()
 
-    #get the rid Object for rid.id
+    """ get the rid Object for rid.id """
     resp= RID.query.filter_by(rid=Rid).first()
 
     if resp:
