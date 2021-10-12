@@ -25,13 +25,6 @@ Rid = 'no id'
 
 #this is data of sum of market all money
 
-#------------Root API------------------
-@app.route('/api')
-@cross_origin()
-def main():
-    return 'Root of Market API'
-
-
 #-------------Start Survey API-------------------------
 
 @app.route('/api/start_survey', methods=['POST'])
@@ -1561,28 +1554,6 @@ def prices():
         'market10': market10
     }
 
-
-# ---------------------this API is only for testing purpose-----------------------------
-
-#example response
-# {
-#     "market1":{
-#             "id":1,
-#             "options":[
-#                 {"id":11,"bet":2},
-#                 {"id":12,"bet":2},
-#                 {"id":13,"bet":3}
-#             ]
-#     },
-
-#     "market2":{
-#             "id":2,
-#             "options":[
-#                 {"id":31,"bet":2},
-#                 {"id":32,"bet":2}
-#             ]
-#     }
-# }
 
 #-----------run flask app------------------------
 
