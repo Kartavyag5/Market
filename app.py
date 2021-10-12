@@ -1239,7 +1239,7 @@ def prices():
 
     """ prices calculation after submit """
 
-""" all money bet sums for market_1 """
+    """ all money bet sums for market_1 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_1.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_1.money_bet_2)).scalar()
@@ -1260,7 +1260,7 @@ def prices():
     user_bet.price_3 = price3
     user_bet.price_4 = price4
 
-""" all money bet sums for market_2 """
+    """ all money bet sums for market_2 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_2.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_2.money_bet_2)).scalar()
@@ -1281,7 +1281,7 @@ def prices():
     user_bet.price_3 = price3
     user_bet.price_4 = price4
 
-""" all money bet sums for market_3 """
+    """ all money bet sums for market_3 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_3.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_3.money_bet_2)).scalar()
@@ -1302,7 +1302,7 @@ def prices():
     user_bet.price_3 = price3
     user_bet.price_4 = price4
 
-""" all money bet sums for market_4 """
+    """ all money bet sums for market_4 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_4.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_4.money_bet_2)).scalar()
@@ -1317,7 +1317,7 @@ def prices():
     user_bet.price_1 = price1
     user_bet.price_2 = price2
 
-""" all money bet sums for market_5 """
+    """ all money bet sums for market_5 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_5.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_5.money_bet_2)).scalar()
@@ -1335,7 +1335,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-""" all money bet sums for market_6 """
+    """ all money bet sums for market_6 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_6.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_6.money_bet_2)).scalar()
@@ -1353,7 +1353,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-""" all money bet sums for market_7 """
+    """ all money bet sums for market_7 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_7.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_7.money_bet_2)).scalar()
@@ -1371,7 +1371,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-""" all money bet sums for market_8 """
+    """ all money bet sums for market_8 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_8.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_8.money_bet_2)).scalar()
@@ -1389,7 +1389,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-""" all money bet sums for market_9 """
+    """ all money bet sums for market_9 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_9.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_9.money_bet_2)).scalar()
@@ -1407,7 +1407,7 @@ def prices():
     user_bet.price_2 = price2
     user_bet.price_3 = price3
 
-""" all money bet sums for market_10 """
+    """ all money bet sums for market_10 """
 
     sum_money_bet_1 = db.session.query(func.sum(Market_10.money_bet_1)).scalar()
     sum_money_bet_2 = db.session.query(func.sum(Market_10.money_bet_2)).scalar()
