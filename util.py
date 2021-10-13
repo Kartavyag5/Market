@@ -1,21 +1,7 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from .models import *
-from dotenv import load_dotenv
-import os
+from app import Market_1,Market_2,Market_3,Market_4,Market_5,Market_6,Market_7,Market_8,Market_9,Market_10
 
 
-load_dotenv()
-
-app  = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-
-# this variable, db, will be used for all SQLAlchemy commands
-db = SQLAlchemy(app)
-
-def initial_values_for_markets():
+def initial_values_for_markets(db):
     market1_check = Market_1.query.all()
     
     if not market1_check:
