@@ -145,7 +145,7 @@ def initial_values_for_markets(db):
 
         return {'message':'default values successfully added'}
 
-def show_latest_prices(Rid):
+def show_latest_prices(Rid,db):
     m1 = db.session.query(Market_1).order_by(Market_1.id.desc()).first()
     m2 = db.session.query(Market_2).order_by(Market_2.id.desc()).first()
     m3 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
