@@ -6,6 +6,7 @@ from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
 # from .util import initial_values_for_markets, show_latest_prices
 import os
+from constant import ERROR_MESSAGE, SUCCESS_MESSAGE
 
 
 load_dotenv()
@@ -268,7 +269,6 @@ db.create_all()
 @app.route('/api/start_survey', methods=['POST'])
 @cross_origin()
 def start_survey():
-    #initial_values_for_markets(db)
 
     market1_check = Market_1.query.all()
     
@@ -419,7 +419,7 @@ def start_survey():
         Rid_check = RID.query.all()
         for i in Rid_check:
             if i.rid == Rid:
-                return {'message':'rid is already used'}
+                return {'message':ERROR_MESSAGE['rid_used']}
         
         RID_obj = RID(rid=Rid)
         db.session.add(RID_obj)  
@@ -537,7 +537,7 @@ def start_survey():
             'market10': market10,
             })
             
-    return {'body': body, 'message':'new rid created',}
+    return {'body': body, 'message':SUCCESS_MESSAGE['new_rid'],}
 
 """End survey API"""
 
@@ -555,7 +555,7 @@ def end_survey():
         resp.time_submitted = datetime.now()
         db.session.commit()
     else:
-        return {'msg':'id not found'}
+        return {'msg':ERROR_MESSAGE['id_not_found']}
     
     """front end response"""
     fe_respo = dict(data)
@@ -1468,7 +1468,7 @@ def prices():
     """this is for get id of user who start survey"""
     resp= RID.query.filter_by(rid=Rid).first()
     if not resp:
-        return {'msg':'no user started survey'}
+        return {'message':ERROR_MESSAGE['start_survey']}
 
     """this is for apply the latest price"""
     user_bet = Market_1.query.order_by(Market_1.id.desc()).first()
@@ -1777,19 +1777,20 @@ def prices():
             'option3':{'id':103, 'money_bet_3':r.money_bet_3, 'price_3':r.price_3, 'bet_3':r.bet_3,},
         })
     
-    return {
-        'market1': market1, 
-        'market2': market2, 
-        'market3': market3,
-        'market4': market4,
-        'market5': market5,
-        'market6': market6,
-        'market7': market7,
-        'market8': market8,
-        'market9': market9,
-        'market10': market10
-    }
+    # return {
+    #     'market1': market1, 
+    #     'market2': market2, 
+    #     'market3': market3,
+    #     'market4': market4,
+    #     'market5': market5,
+    #     'market6': market6,
+    #     'market7': market7,
+    #     'market8': market8,
+    #     'market9': market9,
+    #     'market10': market10
+    # }
 
+    return {"message":SUCCESS_MESSAGE['prices_update']}
 
 """run flask app"""
 
