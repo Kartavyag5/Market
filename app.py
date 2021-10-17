@@ -4,8 +4,8 @@ from sqlalchemy import func
 from datetime import datetime
 from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
+# from .util import initial_values_for_markets, show_latest_prices
 import os
-from util import initial_values_for_markets, show_latest_prices
 
 
 load_dotenv()
@@ -268,148 +268,148 @@ db.create_all()
 @app.route('/api/start_survey', methods=['POST'])
 @cross_origin()
 def start_survey():
-    initial_values_for_markets(db)
+    #initial_values_for_markets(db)
 
-    # market1_check = Market_1.query.all()
+    market1_check = Market_1.query.all()
     
-    # if not market1_check:
-    #     market1 = Market_1(
-    #                 price_1=0.25,
-    #                 price_2=0.25,
-    #                 price_3=0.25,
-    #                 price_4=0.25,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 money_bet_3=10,
-    #                 money_bet_4=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #                 bet_3=0,
-    #                 bet_4=0,
-    #     )
+    if not market1_check:
+        market1 = Market_1(
+                    price_1=0.25,
+                    price_2=0.25,
+                    price_3=0.25,
+                    price_4=0.25,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    money_bet_3=10,
+                    money_bet_4=10,
+                    bet_1=0,
+                    bet_2=0,
+                    bet_3=0,
+                    bet_4=0,
+        )
 
-    #     market2 = Market_2(
-    #                 price_1=0.25,
-    #                 price_2=0.25,
-    #                 price_3=0.25,
-    #                 price_4=0.25,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 money_bet_3=10,
-    #                 money_bet_4=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #                 bet_3=0,
-    #                 bet_4=0,
-    #     )
+        market2 = Market_2(
+                    price_1=0.25,
+                    price_2=0.25,
+                    price_3=0.25,
+                    price_4=0.25,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    money_bet_3=10,
+                    money_bet_4=10,
+                    bet_1=0,
+                    bet_2=0,
+                    bet_3=0,
+                    bet_4=0,
+        )
 
-    #     market3 = Market_3(
-    #                 price_1=0.25,
-    #                 price_2=0.25,
-    #                 price_3=0.25,
-    #                 price_4=0.25,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 money_bet_3=10,
-    #                 money_bet_4=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #                 bet_3=0,
-    #                 bet_4=0,
-    #     )
+        market3 = Market_3(
+                    price_1=0.25,
+                    price_2=0.25,
+                    price_3=0.25,
+                    price_4=0.25,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    money_bet_3=10,
+                    money_bet_4=10,
+                    bet_1=0,
+                    bet_2=0,
+                    bet_3=0,
+                    bet_4=0,
+        )
         
-    #     market4 = Market_4(
-    #                 price_1=0.5,
-    #                 price_2=0.5,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #     )
+        market4 = Market_4(
+                    price_1=0.5,
+                    price_2=0.5,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    bet_1=0,
+                    bet_2=0,
+        )
 
-    #     market5 = Market_5(
-    #                 price_1=0.33,
-    #                 price_2=0.33,
-    #                 price_3=0.33,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 money_bet_3=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #                 bet_3=0,
-    #     )
+        market5 = Market_5(
+                    price_1=0.33,
+                    price_2=0.33,
+                    price_3=0.33,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    money_bet_3=10,
+                    bet_1=0,
+                    bet_2=0,
+                    bet_3=0,
+        )
 
-    #     market6 = Market_6(
-    #                 price_1=0.33,
-    #                 price_2=0.33,
-    #                 price_3=0.33,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 money_bet_3=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #                 bet_3=0,
-    #     )
+        market6 = Market_6(
+                    price_1=0.33,
+                    price_2=0.33,
+                    price_3=0.33,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    money_bet_3=10,
+                    bet_1=0,
+                    bet_2=0,
+                    bet_3=0,
+        )
 
-    #     market7 = Market_7(
-    #                 price_1=0.33,
-    #                 price_2=0.33,
-    #                 price_3=0.33,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 money_bet_3=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #                 bet_3=0,
-    #     )
+        market7 = Market_7(
+                    price_1=0.33,
+                    price_2=0.33,
+                    price_3=0.33,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    money_bet_3=10,
+                    bet_1=0,
+                    bet_2=0,
+                    bet_3=0,
+        )
 
-    #     market8 = Market_8(
-    #                 price_1=0.33,
-    #                 price_2=0.33,
-    #                 price_3=0.33,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 money_bet_3=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #                 bet_3=0,
-    #     )
+        market8 = Market_8(
+                    price_1=0.33,
+                    price_2=0.33,
+                    price_3=0.33,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    money_bet_3=10,
+                    bet_1=0,
+                    bet_2=0,
+                    bet_3=0,
+        )
 
-    #     market9 = Market_9(
-    #                 price_1=0.33,
-    #                 price_2=0.33,
-    #                 price_3=0.33,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 money_bet_3=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #                 bet_3=0,
-    #     )
+        market9 = Market_9(
+                    price_1=0.33,
+                    price_2=0.33,
+                    price_3=0.33,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    money_bet_3=10,
+                    bet_1=0,
+                    bet_2=0,
+                    bet_3=0,
+        )
 
-    #     market10 = Market_10(
-    #                 price_1=0.33,
-    #                 price_2=0.33,
-    #                 price_3=0.33,
-    #                 money_bet_1=10,
-    #                 money_bet_2=10,
-    #                 money_bet_3=10,
-    #                 bet_1=0,
-    #                 bet_2=0,
-    #                 bet_3=0,
-    #     )
+        market10 = Market_10(
+                    price_1=0.33,
+                    price_2=0.33,
+                    price_3=0.33,
+                    money_bet_1=10,
+                    money_bet_2=10,
+                    money_bet_3=10,
+                    bet_1=0,
+                    bet_2=0,
+                    bet_3=0,
+        )
 
-    #     db.session.add(market1)  
-    #     db.session.add(market2)  
-    #     db.session.add(market3)
-    #     db.session.add(market4)  
-    #     db.session.add(market5)  
-    #     db.session.add(market6)  
-    #     db.session.add(market7)  
-    #     db.session.add(market8)  
-    #     db.session.add(market9)  
-    #     db.session.add(market10)  
-    #     db.session.commit()
+        db.session.add(market1)  
+        db.session.add(market2)  
+        db.session.add(market3)
+        db.session.add(market4)  
+        db.session.add(market5)  
+        db.session.add(market6)  
+        db.session.add(market7)  
+        db.session.add(market8)  
+        db.session.add(market9)  
+        db.session.add(market10)  
+        db.session.commit()
 
     """when you give rid in post request, every time new rid obj created with datetime.now()
     you have to give unique rid in request."""
@@ -425,121 +425,119 @@ def start_survey():
         db.session.add(RID_obj)  
         db.session.commit()
 
-    res = show_latest_prices(Rid,db)
     """this is for get the latest price of options in all markets"""
-    # m1 = db.session.query(Market_1).order_by(Market_1.id.desc()).first()
-    # m2 = db.session.query(Market_2).order_by(Market_2.id.desc()).first()
-    # m3 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
-    # m4 = db.session.query(Market_4).order_by(Market_4.id.desc()).first()
-    # m5 = db.session.query(Market_5).order_by(Market_5.id.desc()).first()
-    # m6 = db.session.query(Market_6).order_by(Market_6.id.desc()).first()
-    # m7 = db.session.query(Market_7).order_by(Market_7.id.desc()).first()
-    # m8 = db.session.query(Market_8).order_by(Market_8.id.desc()).first()
-    # m9 = db.session.query(Market_9).order_by(Market_9.id.desc()).first()
-    # m10 = db.session.query(Market_10).order_by(Market_10.id.desc()).first()
-    # market1 = []
-    # market2 = []
-    # market3 = []
-    # market4 = []
-    # market5 = []
-    # market6 = []
-    # market7 = []
-    # market8 = []
-    # market9 = []
-    # market10 = []
+    m1 = db.session.query(Market_1).order_by(Market_1.id.desc()).first()
+    m2 = db.session.query(Market_2).order_by(Market_2.id.desc()).first()
+    m3 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
+    m4 = db.session.query(Market_4).order_by(Market_4.id.desc()).first()
+    m5 = db.session.query(Market_5).order_by(Market_5.id.desc()).first()
+    m6 = db.session.query(Market_6).order_by(Market_6.id.desc()).first()
+    m7 = db.session.query(Market_7).order_by(Market_7.id.desc()).first()
+    m8 = db.session.query(Market_8).order_by(Market_8.id.desc()).first()
+    m9 = db.session.query(Market_9).order_by(Market_9.id.desc()).first()
+    m10 = db.session.query(Market_10).order_by(Market_10.id.desc()).first()
+    market1 = []
+    market2 = []
+    market3 = []
+    market4 = []
+    market5 = []
+    market6 = []
+    market7 = []
+    market8 = []
+    market9 = []
+    market10 = []
 
-    # market1.append({
-    #         'id':1,
-    #         'option1':{'id':11,'money_bet_1':0,'price_1': m1.price_1,'bet_1':0,},
-    #         'option2':{'id':12,'money_bet_2':0,'price_2': m1.price_2,'bet_2':0,},
-    #         'option3':{'id':13,'money_bet_3':0,'price_3': m1.price_3,'bet_3':0,},     
-    #         'option4':{'id':14,'money_bet_4':0,'price_4': m1.price_4,'bet_4':0,},
-    #     })
+    market1.append({
+            'id':1,
+            'option1':{'id':11,'money_bet_1':0,'price_1': m1.price_1,'bet_1':0,},
+            'option2':{'id':12,'money_bet_2':0,'price_2': m1.price_2,'bet_2':0,},
+            'option3':{'id':13,'money_bet_3':0,'price_3': m1.price_3,'bet_3':0,},     
+            'option4':{'id':14,'money_bet_4':0,'price_4': m1.price_4,'bet_4':0,},
+        })
     
-    # market2.append({
-    #         'id':2,
-    #         'option1':{'id':21, 'money_bet_1':0, 'price_1':m2.price_1, 'bet_1':0,},
-    #         'option2':{'id':22, 'money_bet_2':0, 'price_2':m2.price_2, 'bet_2':0,},
-    #         'option3':{'id':23, 'money_bet_3':0, 'price_3':m2.price_3, 'bet_3':0,},
-    #         'option4':{'id':24, 'money_bet_4':0, 'price_4':m2.price_4, 'bet_4':0,},
-    #     })
+    market2.append({
+            'id':2,
+            'option1':{'id':21, 'money_bet_1':0, 'price_1':m2.price_1, 'bet_1':0,},
+            'option2':{'id':22, 'money_bet_2':0, 'price_2':m2.price_2, 'bet_2':0,},
+            'option3':{'id':23, 'money_bet_3':0, 'price_3':m2.price_3, 'bet_3':0,},
+            'option4':{'id':24, 'money_bet_4':0, 'price_4':m2.price_4, 'bet_4':0,},
+        })
     
-    # market3.append({
-    #         'id':3,
-    #         'option1':{'id':31, 'money_bet_1':0, 'price_1':m3.price_1, 'bet_1':0,},
-    #         'option2':{'id':32, 'money_bet_2':0, 'price_2':m3.price_2, 'bet_2':0,},
-    #         'option3':{'id':33, 'money_bet_3':0, 'price_3':m3.price_3, 'bet_3':0,},
-    #         'option4':{'id':34, 'money_bet_4':0, 'price_4':m3.price_4, 'bet_4':0,},
-    #     })
+    market3.append({
+            'id':3,
+            'option1':{'id':31, 'money_bet_1':0, 'price_1':m3.price_1, 'bet_1':0,},
+            'option2':{'id':32, 'money_bet_2':0, 'price_2':m3.price_2, 'bet_2':0,},
+            'option3':{'id':33, 'money_bet_3':0, 'price_3':m3.price_3, 'bet_3':0,},
+            'option4':{'id':34, 'money_bet_4':0, 'price_4':m3.price_4, 'bet_4':0,},
+        })
     
-    # market4.append({
-    #         'id':4,
-    #         'option1':{'id':41, 'money_bet_1':0, 'price_1':m4.price_1, 'bet_1':0,},
-    #         'option2':{'id':42, 'money_bet_2':0, 'price_2':m4.price_2, 'bet_2':0,},
-    #     })
+    market4.append({
+            'id':4,
+            'option1':{'id':41, 'money_bet_1':0, 'price_1':m4.price_1, 'bet_1':0,},
+            'option2':{'id':42, 'money_bet_2':0, 'price_2':m4.price_2, 'bet_2':0,},
+        })
 
-    # market5.append({
-    #         'id':5,
-    #         'option1':{'id':51, 'money_bet_1':0, 'price_1':m5.price_1, 'bet_1':0,},
-    #         'option2':{'id':52, 'money_bet_2':0, 'price_2':m5.price_2, 'bet_2':0,},
-    #         'option3':{'id':53, 'money_bet_3':0, 'price_3':m5.price_3, 'bet_3':0,},
-    #     })
+    market5.append({
+            'id':5,
+            'option1':{'id':51, 'money_bet_1':0, 'price_1':m5.price_1, 'bet_1':0,},
+            'option2':{'id':52, 'money_bet_2':0, 'price_2':m5.price_2, 'bet_2':0,},
+            'option3':{'id':53, 'money_bet_3':0, 'price_3':m5.price_3, 'bet_3':0,},
+        })
 
-    # market6.append({
-    #         'id':6,
-    #         'option1':{'id':61, 'money_bet_1':0, 'price_1':m6.price_1, 'bet_1':0,},
-    #         'option2':{'id':62, 'money_bet_2':0, 'price_2':m6.price_2, 'bet_2':0,},
-    #         'option3':{'id':63, 'money_bet_3':0, 'price_3':m6.price_3, 'bet_3':0,},
-    #     })
+    market6.append({
+            'id':6,
+            'option1':{'id':61, 'money_bet_1':0, 'price_1':m6.price_1, 'bet_1':0,},
+            'option2':{'id':62, 'money_bet_2':0, 'price_2':m6.price_2, 'bet_2':0,},
+            'option3':{'id':63, 'money_bet_3':0, 'price_3':m6.price_3, 'bet_3':0,},
+        })
 
-    # market7.append({
-    #         'id':7,
-    #         'option1':{'id':71, 'money_bet_1':0, 'price_1':m7.price_1, 'bet_1':0,},
-    #         'option2':{'id':72, 'money_bet_2':0, 'price_2':m7.price_2, 'bet_2':0,},
-    #         'option3':{'id':73, 'money_bet_3':0, 'price_3':m7.price_3, 'bet_3':0,},
-    #     })
+    market7.append({
+            'id':7,
+            'option1':{'id':71, 'money_bet_1':0, 'price_1':m7.price_1, 'bet_1':0,},
+            'option2':{'id':72, 'money_bet_2':0, 'price_2':m7.price_2, 'bet_2':0,},
+            'option3':{'id':73, 'money_bet_3':0, 'price_3':m7.price_3, 'bet_3':0,},
+        })
 
-    # market8.append({
-    #         'id':8,
-    #         'option1':{'id':81, 'money_bet_1':0, 'price_1':m8.price_1, 'bet_1':0,},
-    #         'option2':{'id':82, 'money_bet_2':0, 'price_2':m8.price_2, 'bet_2':0,},
-    #         'option3':{'id':83, 'money_bet_3':0, 'price_3':m8.price_3, 'bet_3':0,},
-    #     })
+    market8.append({
+            'id':8,
+            'option1':{'id':81, 'money_bet_1':0, 'price_1':m8.price_1, 'bet_1':0,},
+            'option2':{'id':82, 'money_bet_2':0, 'price_2':m8.price_2, 'bet_2':0,},
+            'option3':{'id':83, 'money_bet_3':0, 'price_3':m8.price_3, 'bet_3':0,},
+        })
 
-    # market9.append({
-    #         'id':9,
-    #         'option1':{'id':91, 'money_bet_1':0, 'price_1':m9.price_1, 'bet_1':0,},
-    #         'option2':{'id':92, 'money_bet_2':0, 'price_2':m9.price_2, 'bet_2':0,},
-    #         'option3':{'id':93, 'money_bet_3':0, 'price_3':m9.price_3, 'bet_3':0,},
-    #     })
+    market9.append({
+            'id':9,
+            'option1':{'id':91, 'money_bet_1':0, 'price_1':m9.price_1, 'bet_1':0,},
+            'option2':{'id':92, 'money_bet_2':0, 'price_2':m9.price_2, 'bet_2':0,},
+            'option3':{'id':93, 'money_bet_3':0, 'price_3':m9.price_3, 'bet_3':0,},
+        })
 
-    # market10.append({
-    #         'id':10,
-    #         'option1':{'id':101, 'money_bet_1':0, 'price_1':m10.price_1, 'bet_1':0,},
-    #         'option2':{'id':102, 'money_bet_2':0, 'price_2':m10.price_2, 'bet_2':0,},
-    #         'option3':{'id':103, 'money_bet_3':0, 'price_3':m10.price_3, 'bet_3':0,},
-    #     })
+    market10.append({
+            'id':10,
+            'option1':{'id':101, 'money_bet_1':0, 'price_1':m10.price_1, 'bet_1':0,},
+            'option2':{'id':102, 'money_bet_2':0, 'price_2':m10.price_2, 'bet_2':0,},
+            'option3':{'id':103, 'money_bet_3':0, 'price_3':m10.price_3, 'bet_3':0,},
+        })
 
-    # """this query will return the last created rid object"""
-    # resp= RID.query.filter_by(rid=Rid).first()
-    # body = []
-    # body.append({
-    #         'rid':resp.rid, 
-    #         'time_started':time_started, 
-    #         'market1': market1, 
-    #         'market2': market2, 
-    #         'market3': market3,
-    #         'market4': market4,
-    #         'market5': market5,
-    #         'market6': market6,
-    #         'market7': market7,
-    #         'market8': market8,
-    #         'market9': market9,
-    #         'market10': market10,
-    #         })
+    """this query will return the last created rid object"""
+    resp= RID.query.filter_by(rid=Rid).first()
+    body = []
+    body.append({
+            'rid':resp.rid, 
+            'time_started':resp.time_started, 
+            'market1': market1, 
+            'market2': market2, 
+            'market3': market3,
+            'market4': market4,
+            'market5': market5,
+            'market6': market6,
+            'market7': market7,
+            'market8': market8,
+            'market9': market9,
+            'market10': market10,
+            })
             
-    #return {'body': res, 'message':'new rid created',}
-    return res
+    return {'body': body, 'message':'new rid created',}
 
 """End survey API"""
 

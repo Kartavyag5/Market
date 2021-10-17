@@ -1,4 +1,5 @@
-from app import Market_1,Market_2,Market_3,Market_4,Market_5,Market_6,Market_7,Market_8,Market_9,Market_10
+from .models import *
+
 
 
 def initial_values_for_markets(db):
