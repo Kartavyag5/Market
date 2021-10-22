@@ -3,13 +3,15 @@
 #from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from dotenv import load_dotenv
-from flask_app import db
+#from market_app import db
+from market_app import create_app
+from flask_sqlalchemy import SQLAlchemy
+import os
+from .config import Config
 
-
+app = create_app(Config)
+db = SQLAlchemy(app)
 load_dotenv()
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 
 """ RID Model """
@@ -244,4 +246,7 @@ class Market_10(db.Model):
     def __repr__(self):
         return f"{self.rid.rid}"
 
-#db.create_all()
+# db.create_all()
+
+# with app.app_context():
+#     db.create_all()

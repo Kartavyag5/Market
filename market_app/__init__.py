@@ -1,22 +1,20 @@
 from flask import Flask
-import os
 from flask_cors import CORS
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from .config import Config
-from flask_app.app1 import app1
-
-
 
 load_dotenv()
-db = SQLAlchemy()
+#db = SQLAlchemy()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
-    app.register_blueprint(app1)
-    db.init_app(app)
     cors = CORS(app)
+    #db.init_app(app)
+    # db.create_all()
+    # app.add_url_rule('/api/start_survey', view_func=utils.initial_values_for_markets)
+    #app.add_url_rule('/api/end_survey', view_func=utils.other)
     return app
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
