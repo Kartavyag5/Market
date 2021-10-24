@@ -4,7 +4,6 @@ from sqlalchemy import func
 from datetime import datetime
 from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
-from market_app.market_util import store_FE_response_data
 from .utils import *
 from .market_util import *
 from .models import *
@@ -1799,6 +1798,6 @@ def prices():
 """run flask app"""
 
 # if __name__ == '__main__':
-#     db.create_all()
 #     db.init_app(app)
+#     db.create_all()
 #     app.run(debug=True)
