@@ -5,7 +5,7 @@ def store_FE_response_data(data,resp):
 
     fe_respo = dict(data)
     
-    # get the last obj of markets.
+    """ get the last obj of markets. """
     market1_last_bet = Market_1.query.order_by(Market_1.id.desc()).first()
     market2_last_bet = Market_2.query.order_by(Market_2.id.desc()).first()
     market3_last_bet = Market_3.query.order_by(Market_3.id.desc()).first()
@@ -17,7 +17,7 @@ def store_FE_response_data(data,resp):
     market9_last_bet = Market_9.query.order_by(Market_9.id.desc()).first()
     market10_last_bet = Market_10.query.order_by(Market_10.id.desc()).first()
 
-    # this for loop iterate over response and classify it with market obj
+    """ this for loop iterate over response and classify it with market obj """
 
     for key,value in fe_respo.items():
 
@@ -25,7 +25,7 @@ def store_FE_response_data(data,resp):
 
         for i in option_list:
 
-            # -----------------Market_1------------------
+            """Market_1"""
             if i['id']==11:
                 bet_val = i['bet']
                 check_obj = Market_1.query.filter_by(rid=resp.id).first()
@@ -90,7 +90,7 @@ def store_FE_response_data(data,resp):
                     check_obj.bet_4 = bet_val
                     db.session.commit()
 
-            # -----------------Market_2------------------
+            """Market_2"""
             if i['id']==21:
                 bet_val = i['bet']
                 check_obj = Market_2.query.filter_by(rid=resp.id).first()
@@ -155,7 +155,7 @@ def store_FE_response_data(data,resp):
                     check_obj.bet_4 = bet_val
                     db.session.commit()
 
-            # -----------------Market_3------------------
+            """Market_3"""
             if i['id']==31:
                 bet_val = i['bet']
                 check_obj = Market_3.query.filter_by(rid=resp.id).first()
@@ -220,7 +220,7 @@ def store_FE_response_data(data,resp):
                     check_obj.bet_4 = bet_val
                     db.session.commit()
                     
-            # -----------------Market_4-------------------
+            """Market_4"""
             if i['id']==41:
                 bet_val = i['bet']
                 check_obj = Market_4.query.filter_by(rid=resp.id).first()
@@ -254,7 +254,7 @@ def store_FE_response_data(data,resp):
                     db.session.commit()
 
 
-            # -----------------Market_5------------------
+            """Market_5"""
             if i['id']==51:
                 bet_val = i['bet']
                 check_obj = Market_5.query.filter_by(rid=resp.id).first()
@@ -303,7 +303,7 @@ def store_FE_response_data(data,resp):
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # -----------------Market_6------------------
+            """Market_6"""
             if i['id']==61:
                 bet_val = i['bet']
                 check_obj = Market_6.query.filter_by(rid=resp.id).first()
@@ -352,7 +352,7 @@ def store_FE_response_data(data,resp):
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # -----------------Market_7------------------
+            """Market_7"""
             if i['id']==71:   
                 bet_val = i['bet']
                 check_obj = Market_7.query.filter_by(rid=resp.id).first()
@@ -401,7 +401,7 @@ def store_FE_response_data(data,resp):
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # -----------------Market_8------------------
+            """Market_8"""
             if i['id']==81:
                 bet_val = i['bet']
                 check_obj = Market_8.query.filter_by(rid=resp.id).first()
@@ -450,7 +450,7 @@ def store_FE_response_data(data,resp):
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # -----------------Market_9------------------
+            """Market_9"""
             if i['id']==91:
                 bet_val = i['bet']
                 check_obj = Market_9.query.filter_by(rid=resp.id).first()
@@ -499,7 +499,7 @@ def store_FE_response_data(data,resp):
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-            # -----------------Market_10------------------
+            """Market_10"""
             if i['id']==101:
                 bet_val = i['bet']
                 check_obj = Market_10.query.filter_by(rid=resp.id).first()
@@ -548,7 +548,7 @@ def store_FE_response_data(data,resp):
                     check_obj.bet_3 = bet_val
                     db.session.commit()
 
-        # make all unselected options as 0 in db.
+    """ make all unselected options as 0 in db. """
     market1_rid_obj = Market_1.query.filter_by(rid=resp.id).first()
     market2_rid_obj = Market_2.query.filter_by(rid=resp.id).first()
     market3_rid_obj = Market_3.query.filter_by(rid=resp.id).first()
@@ -560,7 +560,7 @@ def store_FE_response_data(data,resp):
     market9_rid_obj = Market_9.query.filter_by(rid=resp.id).first()
     market10_rid_obj = Market_10.query.filter_by(rid=resp.id).first()
 
-    # Market_1
+    """Market_1"""
     if not market1_rid_obj:
         rid_market1 = Market_1(
                 rid=resp.id,
@@ -600,7 +600,7 @@ def store_FE_response_data(data,resp):
             market1_rid_obj.money_bet_4 = 0
             market1_rid_obj.price_4 = 0
 
-    # Market_2
+    """Market_2"""
     if not market2_rid_obj:
         rid_market2 = Market_2(
                 rid=resp.id,
@@ -640,7 +640,7 @@ def store_FE_response_data(data,resp):
             market2_rid_obj.money_bet_4 = 0
             market2_rid_obj.price_4 = 0
     
-    # Market_3
+    """Market_3"""
     if not market3_rid_obj:
         rid_market3 = Market_3(
                 rid=resp.id,
@@ -680,7 +680,7 @@ def store_FE_response_data(data,resp):
             market3_rid_obj.money_bet_4 = 0
             market3_rid_obj.price_4 = 0
             
-    # Market_4
+    """Market_4"""
     if not market4_rid_obj:
         rid_market4 = Market_4(
                 rid=resp.id,
@@ -704,7 +704,7 @@ def store_FE_response_data(data,resp):
             market4_rid_obj.money_bet_2 = 0
             market4_rid_obj.price_2 = 0
 
-    # Market_5
+    """Market_5"""
     if not market5_rid_obj:
         rid_market5 = Market_5(
                 rid=resp.id,
@@ -736,7 +736,7 @@ def store_FE_response_data(data,resp):
             market5_rid_obj.money_bet_3 = 0
             market5_rid_obj.price_3 = 0
 
-    # Market_6
+    """Market_6"""
     if not market6_rid_obj:
         rid_market6 = Market_6(
                 rid=resp.id,
@@ -768,7 +768,7 @@ def store_FE_response_data(data,resp):
             market6_rid_obj.money_bet_3 = 0
             market6_rid_obj.price_3 = 0
 
-    # Market_7
+    """Market_7"""
     if not market7_rid_obj:
         rid_market7 = Market_7(
                 rid=resp.id,
@@ -800,7 +800,7 @@ def store_FE_response_data(data,resp):
             market7_rid_obj.money_bet_3 = 0
             market7_rid_obj.price_3 = 0
 
-    # Market_8
+    """Market_8"""
     if not market8_rid_obj:
         rid_market8 = Market_8(
                 rid=resp.id,
@@ -832,7 +832,7 @@ def store_FE_response_data(data,resp):
             market8_rid_obj.money_bet_3 = 0
             market8_rid_obj.price_3 = 0
 
-    # Market_9
+    """Market_9"""
     if not market9_rid_obj:
         rid_market9 = Market_9(
                 rid=resp.id,
@@ -864,7 +864,7 @@ def store_FE_response_data(data,resp):
             market9_rid_obj.money_bet_3 = 0
             market9_rid_obj.price_3 = 0
 
-    # Market_10
+    """Market_10"""
     if not market10_rid_obj:
         rid_market10 = Market_10(
                 rid=resp.id,
