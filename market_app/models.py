@@ -1,6 +1,3 @@
-
-
-#from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from dotenv import load_dotenv
 #from market_app import db
