@@ -1,6 +1,5 @@
 from .models import *
 
-
 def store_FE_response_data(data,resp):
 
     fe_respo = dict(data)
