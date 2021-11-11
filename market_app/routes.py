@@ -1,6 +1,4 @@
-from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
+from flask import request
 from datetime import datetime
 from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv

@@ -1,9 +1,7 @@
 from datetime import datetime
 from dotenv import load_dotenv
-#from market_app import db
 from market_app import create_app
 from flask_sqlalchemy import SQLAlchemy
-import os
 from .config import Config
 
 app = create_app(Config)
