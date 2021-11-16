@@ -560,24 +560,6 @@ def store_FE_response_data(data,resp):
     market10_rid_obj = Market_10.query.filter_by(rid=resp.id).first()
 
     """Market_1"""
-    if not market1_rid_obj:
-        rid_market1 = Market_1(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                price_3=0,
-                price_4=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                money_bet_3=0,
-                money_bet_4=0,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
-                bet_4=0,
-        )
-        db.session.add(rid_market1)  
-
     if market1_rid_obj:
         if not market1_rid_obj.bet_1:
             market1_rid_obj.bet_1 = 0
@@ -600,24 +582,6 @@ def store_FE_response_data(data,resp):
             market1_rid_obj.price_4 = 0
 
     """Market_2"""
-    if not market2_rid_obj:
-        rid_market2 = Market_2(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                price_3=0,
-                price_4=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                money_bet_3=0,
-                money_bet_4=0,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
-                bet_4=0,
-        )
-        db.session.add(rid_market2)
-
     if market2_rid_obj:
         if not market2_rid_obj.bet_1:
             market2_rid_obj.bet_1 = 0
@@ -640,24 +604,6 @@ def store_FE_response_data(data,resp):
             market2_rid_obj.price_4 = 0
     
     """Market_3"""
-    if not market3_rid_obj:
-        rid_market3 = Market_3(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                price_3=0,
-                price_4=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                money_bet_3=0,
-                money_bet_4=0,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
-                bet_4=0,
-        )
-        db.session.add(rid_market3)
-
     if market3_rid_obj:
         if not market3_rid_obj.bet_1:
             market3_rid_obj.bet_1 = 0
@@ -680,18 +626,6 @@ def store_FE_response_data(data,resp):
             market3_rid_obj.price_4 = 0
             
     """Market_4"""
-    if not market4_rid_obj:
-        rid_market4 = Market_4(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                bet_1=0,
-                bet_2=0,
-        )
-        db.session.add(rid_market4)
-
     if market4_rid_obj:
         if not market4_rid_obj.bet_1:
             market4_rid_obj.bet_1 = 0
@@ -704,21 +638,6 @@ def store_FE_response_data(data,resp):
             market4_rid_obj.price_2 = 0
 
     """Market_5"""
-    if not market5_rid_obj:
-        rid_market5 = Market_5(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                price_3=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                money_bet_3=0,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
-        )
-        db.session.add(rid_market5)
-
     if market5_rid_obj:
         if not market5_rid_obj.bet_1:
             market5_rid_obj.bet_1 = 0
@@ -736,21 +655,6 @@ def store_FE_response_data(data,resp):
             market5_rid_obj.price_3 = 0
 
     """Market_6"""
-    if not market6_rid_obj:
-        rid_market6 = Market_6(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                price_3=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                money_bet_3=0,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
-        )
-        db.session.add(rid_market6)
-
     if market6_rid_obj:
         if not market6_rid_obj.bet_1:
             market6_rid_obj.bet_1 = 0
@@ -768,21 +672,6 @@ def store_FE_response_data(data,resp):
             market6_rid_obj.price_3 = 0
 
     """Market_7"""
-    if not market7_rid_obj:
-        rid_market7 = Market_7(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                price_3=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                money_bet_3=0,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
-        )
-        db.session.add(rid_market7)
-
     if market7_rid_obj:
         if not market7_rid_obj.bet_1:
             market7_rid_obj.bet_1 = 0
@@ -800,21 +689,6 @@ def store_FE_response_data(data,resp):
             market7_rid_obj.price_3 = 0
 
     """Market_8"""
-    if not market8_rid_obj:
-        rid_market8 = Market_8(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                price_3=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                money_bet_3=0,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
-        )
-        db.session.add(rid_market8)
-
     if market8_rid_obj:
         if not market8_rid_obj.bet_1:
             market8_rid_obj.bet_1 = 0
@@ -832,21 +706,6 @@ def store_FE_response_data(data,resp):
             market8_rid_obj.price_3 = 0
 
     """Market_9"""
-    if not market9_rid_obj:
-        rid_market9 = Market_9(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                price_3=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                money_bet_3=0,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
-        )
-        db.session.add(rid_market9)
-
     if market9_rid_obj:
         if not market9_rid_obj.bet_1:
             market9_rid_obj.bet_1 = 0
@@ -864,21 +723,6 @@ def store_FE_response_data(data,resp):
             market9_rid_obj.price_3 = 0
 
     """Market_10"""
-    if not market10_rid_obj:
-        rid_market10 = Market_10(
-                rid=resp.id,
-                price_1=0,
-                price_2=0,
-                price_3=0,
-                money_bet_1=0,
-                money_bet_2=0,
-                money_bet_3=0,
-                bet_1=0,
-                bet_2=0,
-                bet_3=0,
-        )
-        db.session.add(rid_market10)
-
     if market10_rid_obj:
         if not market10_rid_obj.bet_1:
             market10_rid_obj.bet_1 = 0

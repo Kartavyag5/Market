@@ -10,6 +10,7 @@ load_dotenv()
 
 """global variable for get value in all page"""
 Rid = 'no id'
+started_time = 'no time'
 
 """this is data of sum of market all money"""
 
@@ -25,17 +26,12 @@ def start_survey():
     if request.method=='POST':
         global Rid
         Rid = request.form['rid']
-        Rid_check = RID.query.all()
-        for i in Rid_check:
-            if i.rid == Rid:
-                return {'message':ERROR_MESSAGE['rid_used']}
+        global started_time
+        started_time = datetime.now()
         
-        RID_obj = RID(rid=Rid)
-        db.session.add(RID_obj)  
-        db.session.commit()
-
     """this is for get the latest price of options in all markets"""
     return show_latest_prices(Rid,db)
+
 
 """End survey API"""
 
@@ -44,6 +40,16 @@ def start_survey():
 def end_survey():
 
     if request.method=='POST':
+        Rid_check = RID.query.all()
+        for i in Rid_check:
+            if i.rid == Rid:
+                return {'message':ERROR_MESSAGE['rid_used']}
+        
+        RID_obj = RID(rid=Rid, time_started=started_time)
+        db.session.add(RID_obj)
+        db.session.commit()
+        
+        """FE response data"""
         data = request.get_json()
 
     """get the rid Object for rid.id"""

@@ -242,11 +242,10 @@ def show_latest_prices(Rid,db):
         })
 
     # this query will return the last created rid object
-    resp= RID.query.filter_by(rid=Rid).first()
+    #resp= RID.query.filter_by(rid=Rid).first()
     body = []
     body.append({
-            'rid':resp.rid, 
-            'time_started':resp.time_started, 
+            'rid':Rid, 
             'market1': market1, 
             'market2': market2, 
             'market3': market3,
