@@ -39,7 +39,7 @@ all market names:
 """ MARKET-1 Kodiak survery """
 class Market_1(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"),nullable=True, )
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -62,7 +62,7 @@ class Market_1(db.Model):
 """ MARKET-2 Jeopardy! """
 class Market_2(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -85,7 +85,7 @@ class Market_2(db.Model):
 """ MARKET-3 BYU Football """
 class Market_3(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -108,7 +108,7 @@ class Market_3(db.Model):
 """ MARKET-4 No Time To Die """
 class Market_4(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     
@@ -125,7 +125,7 @@ class Market_4(db.Model):
 """ MARKET-5 """
 class Market_5(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -145,7 +145,7 @@ class Market_5(db.Model):
 """ MARKET-6 """
 class Market_6(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -165,7 +165,7 @@ class Market_6(db.Model):
 """ MARKET-7 """
 class Market_7(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -185,7 +185,7 @@ class Market_7(db.Model):
 """ MARKET-8 """
 class Market_8(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -205,7 +205,7 @@ class Market_8(db.Model):
 """ MARKET-9 """
 class Market_9(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -225,7 +225,7 @@ class Market_9(db.Model):
 """ MARKET-10 """
 class Market_10(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rid = db.Column(db.Integer(), db.ForeignKey(RID.id),nullable=True)
+    rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
