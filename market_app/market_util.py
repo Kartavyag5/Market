@@ -1,4 +1,5 @@
 from .models import *
+from .constant import *
 
 def store_FE_response_data(data,resp):
 
@@ -742,4 +743,4 @@ def store_FE_response_data(data,resp):
     db.session.commit()
     body = []
     body.append({'rid':resp.rid, 'time_ended':resp.time_submitted, 'selected_options':fe_respo})
-    return {'body': body}
+    return {'body': body, 'message': SUCCESS_MESSAGE['survey_ended']}

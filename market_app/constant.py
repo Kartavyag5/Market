@@ -5,6 +5,8 @@ ERROR_MESSAGE = {
 }
 
 SUCCESS_MESSAGE = {
+    
     "new_rid" : "New RID Created.",
+    "survey_ended" : "success",
     "prices_update" : "all Market prices are updated successfully."
 }
