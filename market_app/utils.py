@@ -147,7 +147,7 @@ def initial_values_for_markets(db):
 
     """show latest prices while start survey"""
 
-def show_latest_prices(Rid,db):
+def show_latest_prices(Rid,db,started_time):
     m1 = db.session.query(Market_1).order_by(Market_1.id.desc()).first()
     m2 = db.session.query(Market_2).order_by(Market_2.id.desc()).first()
     m3 = db.session.query(Market_3).order_by(Market_3.id.desc()).first()
@@ -256,6 +256,7 @@ def show_latest_prices(Rid,db):
             'market8': market8,
             'market9': market9,
             'market10': market10,
+            'time_started': started_time,
             })
             
     return {'body': body, 'message':'new rid created'}

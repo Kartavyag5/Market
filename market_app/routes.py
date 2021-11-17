@@ -30,7 +30,7 @@ def start_survey():
         started_time = datetime.now()
         
     """this is for get the latest price of options in all markets"""
-    return show_latest_prices(Rid,db)
+    return show_latest_prices(Rid,db,started_time)
 
 
 """End survey API"""
