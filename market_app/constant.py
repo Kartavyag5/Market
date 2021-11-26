@@ -8,5 +8,6 @@ SUCCESS_MESSAGE = {
     
     "new_rid" : "New RID Created.",
     "survey_ended" : "success",
-    "prices_update" : "all Market prices are updated successfully."
+    "prices_update" : "all Market prices are updated successfully.",
+    "rid_time_added" : "rid, time added in Market tables successfully. "
 }

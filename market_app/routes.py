@@ -70,4 +70,5 @@ def end_survey():
 @app.route('/api/prices')
 @cross_origin()
 def prices():
+    Rid_startTime_EndTime_Added_to_Market_bets(db)
     return update_all_market_prices(Rid)
