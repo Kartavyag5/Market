@@ -36,15 +36,7 @@ all market names:
     10. 
 """
 
-""" Market-1 Prices """
-class Market_1_Prices(db.Model):
-    price_1 = db.Column(db.Float())
-    price_2 = db.Column(db.Float())
-    price_3 = db.Column(db.Float())
-    update_time = db.Column(db.DateTime, default=datetime.now)
-
-
-""" MARKET-1 Kodiak survery """
+""" MARKET-1-Bets Kodiak survery """
 class Market_1_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"),nullable=True, )
@@ -69,9 +61,18 @@ class Market_1_Bets(db.Model):
 
     def __repr__(self):
         return f"{self.rid.rid}"
+    
+    
+""" Market-1 Prices """
+class Market_1_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    price_4 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
 
 
-""" MARKET-2 Jeopardy! """
+""" MARKET-2-Bets Jeopardy! """
 class Market_2_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
@@ -97,8 +98,17 @@ class Market_2_Bets(db.Model):
     def __repr__(self):
         return f"{self.rid.rid}"
 
+    
+""" Market-2 Prices """
+class Market_2_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    price_4 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
 
-""" MARKET-3 BYU Football """
+    
+""" MARKET-3-Bets BYU Football """
 class Market_3_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
@@ -125,7 +135,16 @@ class Market_3_Bets(db.Model):
         return f"{self.rid.rid}"
 
     
-""" MARKET-4 No Time To Die """
+""" Market-3 Prices """
+class Market_3_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    price_4 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
+    
+    
+""" MARKET-4-Bets No Time To Die """
 class Market_4_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
@@ -144,9 +163,16 @@ class Market_4_Bets(db.Model):
 
     def __repr__(self):
         return f"{self.rid.rid}"
+    
+
+""" Market-4 Prices """
+class Market_4_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
 
 
-""" MARKET-5 """
+""" MARKET-5-Bets """
 class Market_5_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
@@ -169,8 +195,16 @@ class Market_5_Bets(db.Model):
     def __repr__(self):
         return f"{self.rid.rid}"
 
-
-""" MARKET-6 """
+    
+""" Market-5 Prices """
+class Market_5_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
+    
+    
+""" MARKET-6-Bets """
 class Market_6_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
@@ -192,9 +226,17 @@ class Market_6_Bets(db.Model):
 
     def __repr__(self):
         return f"{self.rid.rid}"
+    
+    
+""" Market-6 Prices """
+class Market_6_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
 
 
-""" MARKET-7 """
+""" MARKET-7-Bets """
 class Market_7_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
@@ -218,7 +260,15 @@ class Market_7_Bets(db.Model):
         return f"{self.rid.rid}"
 
 
-""" MARKET-8 """
+""" Market-7 Prices """
+class Market_7_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
+    
+    
+""" MARKET-8-Bets """
 class Market_8_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
@@ -242,7 +292,15 @@ class Market_8_Bets(db.Model):
         return f"{self.rid.rid}"
 
 
-""" MARKET-9 """
+""" Market-8 Prices """
+class Market_8_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
+    
+    
+""" MARKET-9-Bets """
 class Market_9_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
@@ -264,9 +322,17 @@ class Market_9_Bets(db.Model):
 
     def __repr__(self):
         return f"{self.rid.rid}"
+    
+    
+""" Market-9 Prices """
+class Market_9_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
 
 
-""" MARKET-10 """
+""" MARKET-10-Bets """
 class Market_10_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
@@ -288,6 +354,16 @@ class Market_10_Bets(db.Model):
 
     def __repr__(self):
         return f"{self.rid.rid}"
+    
+    
+""" Market-10 Prices """
+class Market_10_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
+    
+    
 
 # db.create_all()
 
