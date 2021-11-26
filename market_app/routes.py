@@ -71,7 +71,6 @@ def end_survey():
 @cross_origin()
 def prices():
     Rid_startTime_EndTime_Added_to_Market_bets(db)
-    update_all_market_prices(Rid)
-    global Rid
-    Rid = ''
-    return {"message":SUCCESS_MESSAGE['prices_update']}
+    return update_all_market_prices(Rid)
+    
+    
