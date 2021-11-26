@@ -36,10 +36,22 @@ all market names:
     10. 
 """
 
+""" Market-1 Prices """
+class Market_1_Prices(db.Model):
+    price_1 = db.Column(db.Float())
+    price_2 = db.Column(db.Float())
+    price_3 = db.Column(db.Float())
+    update_time = db.Column(db.DateTime, default=datetime.now)
+
+
 """ MARKET-1 Kodiak survery """
-class Market_1(db.Model):
+class Market_1_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"),nullable=True, )
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+    
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -60,9 +72,13 @@ class Market_1(db.Model):
 
 
 """ MARKET-2 Jeopardy! """
-class Market_2(db.Model):
+class Market_2_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+    
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -83,9 +99,13 @@ class Market_2(db.Model):
 
 
 """ MARKET-3 BYU Football """
-class Market_3(db.Model):
+class Market_3_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+    
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -106,9 +126,13 @@ class Market_3(db.Model):
 
     
 """ MARKET-4 No Time To Die """
-class Market_4(db.Model):
+class Market_4_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+    
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     
@@ -123,9 +147,13 @@ class Market_4(db.Model):
 
 
 """ MARKET-5 """
-class Market_5(db.Model):
+class Market_5_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -143,9 +171,13 @@ class Market_5(db.Model):
 
 
 """ MARKET-6 """
-class Market_6(db.Model):
+class Market_6_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -163,9 +195,13 @@ class Market_6(db.Model):
 
 
 """ MARKET-7 """
-class Market_7(db.Model):
+class Market_7_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -183,9 +219,13 @@ class Market_7(db.Model):
 
 
 """ MARKET-8 """
-class Market_8(db.Model):
+class Market_8_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -203,9 +243,13 @@ class Market_8(db.Model):
 
 
 """ MARKET-9 """
-class Market_9(db.Model):
+class Market_9_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
@@ -223,9 +267,13 @@ class Market_9(db.Model):
 
 
 """ MARKET-10 """
-class Market_10(db.Model):
+class Market_10_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
+    rid_user = db.Column(db.String())
+    start_time = db.Column(db.DateTime, default=datetime.now)
+    end_time = db.Column(db.DateTime, nullable=True, default=None)
+
     money_bet_1 = db.Column(db.Float())
     money_bet_2 = db.Column(db.Float())
     money_bet_3 = db.Column(db.Float())
