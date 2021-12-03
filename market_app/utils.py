@@ -333,6 +333,59 @@ def show_latest_prices(Rid,db,started_time):
     return {'body': body, 'message':'new rid created'}
 
 
+def prices_seen_by_user(Rid,db,started_time):
+    "these are latest prices in all markets"
+
+    user_seen_prices = show_latest_prices(Rid,db,started_time)
+
+    prices_list = {
+                    'm1_price1': user_seen_prices['body'][0]['market1'][0]['option1']['price_1'],
+                    'm1_price2': user_seen_prices['body'][0]['market1'][0]['option2']['price_2'],
+                    'm1_price3': user_seen_prices['body'][0]['market1'][0]['option3']['price_3'],
+                    'm1_price4': user_seen_prices['body'][0]['market1'][0]['option4']['price_4'],
+
+                    'm2_price1': user_seen_prices['body'][0]['market2'][0]['option1']['price_1'],
+                    'm2_price2': user_seen_prices['body'][0]['market2'][0]['option2']['price_2'],
+                    'm2_price3': user_seen_prices['body'][0]['market2'][0]['option3']['price_3'],
+                    'm2_price4': user_seen_prices['body'][0]['market2'][0]['option4']['price_4'],
+                    
+                    'm3_price1': user_seen_prices['body'][0]['market3'][0]['option1']['price_1'],
+                    'm3_price2': user_seen_prices['body'][0]['market3'][0]['option2']['price_2'],
+                    'm3_price3': user_seen_prices['body'][0]['market3'][0]['option3']['price_3'],
+                    'm3_price4': user_seen_prices['body'][0]['market3'][0]['option4']['price_4'],
+                    
+                    'm4_price1': user_seen_prices['body'][0]['market4'][0]['option1']['price_1'],
+                    'm4_price2': user_seen_prices['body'][0]['market4'][0]['option2']['price_2'],
+                    
+                    'm5_price1': user_seen_prices['body'][0]['market5'][0]['option1']['price_1'],
+                    'm5_price2': user_seen_prices['body'][0]['market5'][0]['option2']['price_2'],
+                    'm5_price3': user_seen_prices['body'][0]['market5'][0]['option3']['price_3'],
+                    
+                    'm6_price1': user_seen_prices['body'][0]['market6'][0]['option1']['price_1'],
+                    'm6_price2': user_seen_prices['body'][0]['market6'][0]['option2']['price_2'],
+                    'm6_price3': user_seen_prices['body'][0]['market6'][0]['option3']['price_3'],
+                    
+                    'm7_price1': user_seen_prices['body'][0]['market7'][0]['option1']['price_1'],
+                    'm7_price2': user_seen_prices['body'][0]['market7'][0]['option2']['price_2'],
+                    'm7_price3': user_seen_prices['body'][0]['market7'][0]['option3']['price_3'],
+                    
+                    'm8_price1': user_seen_prices['body'][0]['market8'][0]['option1']['price_1'],
+                    'm8_price2': user_seen_prices['body'][0]['market8'][0]['option2']['price_2'],
+                    'm8_price3': user_seen_prices['body'][0]['market8'][0]['option3']['price_3'],
+                    
+                    'm9_price1': user_seen_prices['body'][0]['market9'][0]['option1']['price_1'],
+                    'm9_price2': user_seen_prices['body'][0]['market9'][0]['option2']['price_2'],
+                    'm9_price3': user_seen_prices['body'][0]['market9'][0]['option3']['price_3'],
+                    
+                    'm10_price1': user_seen_prices['body'][0]['market10'][0]['option1']['price_1'],
+                    'm10_price2': user_seen_prices['body'][0]['market10'][0]['option2']['price_2'],
+                    'm10_price3': user_seen_prices['body'][0]['market10'][0]['option3']['price_3'],
+    }
+
+    return prices_list
+
+
+
 def update_all_market_prices(Rid):
     """this is for get id of user who start survey"""
     resp= RID.query.filter_by(rid=Rid).first()

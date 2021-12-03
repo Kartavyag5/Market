@@ -11,6 +11,7 @@ load_dotenv()
 """global variable for get value in all page"""
 Rid = 'no id'
 started_time = 'no time'
+prices_user_see = 'no prices'
 
 """this is data of sum of market all money"""
 
@@ -30,6 +31,9 @@ def start_survey():
         started_time = datetime.now()
         
     """this is for get the latest price of options in all markets"""
+    global prices_user_see
+    prices_user_see = prices_seen_by_user(Rid,db,started_time)
+
     return show_latest_prices(Rid,db,started_time)
 
 
@@ -63,7 +67,7 @@ def end_survey():
     
 
     """get the last obj of markets."""
-    return store_FE_response_data(data,resp)
+    return store_FE_response_data(data,resp,prices_user_see)
 
 """prices API"""
 
