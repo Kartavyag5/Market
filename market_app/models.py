@@ -77,7 +77,7 @@ class Market_1_Prices(db.Model):
 class Market_2_Bets(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rid = db.Column(db.Integer(), db.ForeignKey(RID.id, ondelete="CASCADE"), nullable=True)
-    rid_user = db.Column(db.String(10))
+    rid_user = db.Column(db.String(100))
     start_time = db.Column(db.DateTime, default=datetime.now)
     end_time = db.Column(db.DateTime, nullable=True, default=None)
     
