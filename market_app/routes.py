@@ -1,6 +1,6 @@
-from flask import request
+from flask import request, session
 from datetime import datetime
-from flask_cors import CORS, cross_origin
+from flask_cors import cross_origin
 from dotenv import load_dotenv
 from .utils import *
 from .market_util import *
@@ -9,7 +9,7 @@ from .models import *
 load_dotenv()
 
 """global variable for get value in all page"""
-Rid = 'no id'
+#Rid = 'no id'
 started_time = 'no time'
 
 """this is data of sum of market all money"""
@@ -24,13 +24,15 @@ def start_survey():
     """when you give rid in post request, every time new rid obj created with datetime.now()
     you have to give unique rid in request."""
     if request.method=='POST':
-        global Rid
-        Rid = request.form['rid']
+        #global Rid
+        #Rid = request.form['rid']
+        session['Rid'] = request.form.get('rid')
         global started_time
         started_time = datetime.now()
         
+        
     """this is for get the latest price of options in all markets"""
-    return show_latest_prices(Rid,db,started_time)
+    return show_latest_prices(session['Rid'],db,started_time)
 
 
 """End survey API"""
@@ -42,10 +44,10 @@ def end_survey():
     if request.method=='POST':
         Rid_check = RID.query.all()
         for i in Rid_check:
-            if i.rid == Rid:
+            if i.rid == session['Rid']:
                 return {'message':ERROR_MESSAGE['rid_used']}
         
-        RID_obj = RID(rid=Rid, time_started=started_time)
+        RID_obj = RID(rid=session['Rid'], time_started=started_time)
         db.session.add(RID_obj)
         db.session.commit()
         
@@ -53,7 +55,7 @@ def end_survey():
         data = request.get_json()
 
     """get the rid Object for rid.id"""
-    resp= RID.query.filter_by(rid=Rid).first()
+    resp= RID.query.filter_by(rid=session['Rid']).first()
 
     if resp:
         resp.time_submitted = datetime.now()
@@ -71,6 +73,6 @@ def end_survey():
 @cross_origin()
 def prices():
     Rid_startTime_EndTime_Added_to_Market_bets(db)
-    return update_all_market_prices(Rid)
+    return update_all_market_prices(session['Rid'])
     
     

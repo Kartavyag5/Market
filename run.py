@@ -1,3 +1,4 @@
+from flask_session import Session
 from market_app import create_app
 from market_app.routes import *
 from market_app.models import app
@@ -8,4 +9,5 @@ if __name__ == '__main__':
     db.init_app(app)
     db.create_all()
     initial_values_for_markets(db)
+    Session(app)
     app.run(debug=True)
