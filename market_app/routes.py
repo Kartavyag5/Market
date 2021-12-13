@@ -27,12 +27,11 @@ def start_survey():
         #global Rid
         #Rid = request.form['rid']
         session['Rid'] = request.form.get('rid')
-        global started_time
-        started_time = datetime.now()
+        session['started_time'] = datetime.now()
         
         
     """this is for get the latest price of options in all markets"""
-    return show_latest_prices(session['Rid'],db,started_time)
+    return show_latest_prices(session['Rid'],db,session['started_time'])
 
 
 """End survey API"""
@@ -47,7 +46,7 @@ def end_survey():
             if i.rid == session['Rid']:
                 return {'message':ERROR_MESSAGE['rid_used']}
         
-        RID_obj = RID(rid=session['Rid'], time_started=started_time)
+        RID_obj = RID(rid=session['Rid'], time_started=session['started_time'])
         db.session.add(RID_obj)
         db.session.commit()
         

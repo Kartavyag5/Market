@@ -7,7 +7,8 @@ from market_app.utils import initial_values_for_markets
 
 if __name__ == '__main__':
     db.init_app(app)
+    app.config['SESSION_SQLALCHEMY'] = db
+    Session(app)
     db.create_all()
     initial_values_for_markets(db)
-    Session(app)
     app.run(debug=True)

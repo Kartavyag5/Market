@@ -1,3 +1,4 @@
+from flask import session
 from .models import *
 from .constant import *
 from sqlalchemy import func
@@ -572,6 +573,7 @@ def update_all_market_prices(Rid):
         db.session.add(updated_prices_market_10)
 
     db.session.commit()
+    session.clear()
 
     return {"message":SUCCESS_MESSAGE['prices_update']}
 
