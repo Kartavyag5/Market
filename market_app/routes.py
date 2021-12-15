@@ -25,6 +25,8 @@ def start_survey():
     you have to give unique rid in request."""
     if request.method=='POST':
         global Rid
+        if Rid != 'no id':
+            Rid = 'no id'
         Rid = request.form['rid']
         global started_time
         started_time = datetime.now()
