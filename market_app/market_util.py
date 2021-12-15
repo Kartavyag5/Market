@@ -8,7 +8,8 @@ def store_FE_response_data(data,resp):
     """ this for loop iterate over response and classify it with market obj """
 
     for key,value in fe_respo.items():
-
+        if key == 'rid':
+            continue
         option_list = fe_respo[key]['options']
 
         for i in option_list:
