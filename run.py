@@ -8,4 +8,4 @@ if __name__ == '__main__':
     db.init_app(app)
     db.create_all()
     initial_values_for_markets(db)
-    app.run(debug=True)
+    app.run(debug=True,threaded=True)

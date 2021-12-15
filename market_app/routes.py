@@ -9,8 +9,8 @@ from .models import *
 load_dotenv()
 
 """global variable for get value in all page"""
-Rid = 'no id'
 started_time = 'no time'
+data = 'no data'
 
 """this is data of sum of market all money"""
 
@@ -24,8 +24,8 @@ def start_survey():
     """when you give rid in post request, every time new rid obj created with datetime.now()
     you have to give unique rid in request."""
     if request.method=='POST':
-        global Rid
         Rid = request.form['rid']
+        
         global started_time
         started_time = datetime.now()
         
@@ -40,27 +40,20 @@ def start_survey():
 def end_survey():
 
     if request.method=='POST':
-        Rid_check = RID.query.all()
-        for i in Rid_check:
-            if i.rid == Rid:
-                return {'message':ERROR_MESSAGE['rid_used']}
-        
-        RID_obj = RID(rid=Rid, time_started=started_time)
-        db.session.add(RID_obj)
-        db.session.commit()
-        
         """FE response data"""
+        global data
         data = request.get_json()
 
-    """get the rid Object for rid.id"""
-    resp= RID.query.filter_by(rid=Rid).first()
-
-    if resp:
-        resp.time_submitted = datetime.now()
+        Rid_check = RID.query.all()
+        for i in Rid_check:
+            if i.rid == data['rid']:
+                return {'message':ERROR_MESSAGE['rid_used']}
+        
+        RID_obj = RID(rid=data['rid'], time_started=started_time, time_submitted = datetime.now())
+        db.session.add(RID_obj)
         db.session.commit()
-    else:
-        return {'msg':ERROR_MESSAGE['id_not_found']}
-    
+
+    resp= RID.query.filter_by(rid=data['rid']).first()    
 
     """get the last obj of markets."""
     return store_FE_response_data(data,resp)
@@ -71,6 +64,6 @@ def end_survey():
 @cross_origin()
 def prices():
     Rid_startTime_EndTime_Added_to_Market_bets(db)
-    return update_all_market_prices(Rid)
+    return update_all_market_prices(data['rid'])
     
     
