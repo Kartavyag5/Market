@@ -214,7 +214,9 @@ def initial_values_for_markets(db):
         db.session.add(market9)  
         db.session.add(market10)  
         db.session.commit()    
-        return {'message':'default values successfully added'}
+        return {'message':'default values added successfully'}
+    
+    return {"message":'markets already has initial values.'}
 
     """show latest prices while start survey"""
 
